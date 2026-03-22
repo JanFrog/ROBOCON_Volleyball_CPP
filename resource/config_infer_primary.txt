@@ -1,0 +1,27 @@
+[property]
+# 1. 指定你的TensorRT引擎文件
+model-engine-file=volleyball_26n_fp16.engine
+
+# 2. 预处理配置 - 必须与你模型导出时的参数严格一致
+# 如果你训练时做了归一化 (img/255.0)， 通常是 0.003921569=1/255
+net-scale-factor=0.003921569
+offsets=0;0;0
+
+# 3. 网络输入配置 - 必须与你模型的静态输入完全一致
+infer-dims=3;640;640  # 通道数;高度;宽度 (CHW格式)
+model-color-format=0  # 0=RGB, 1=BGR, 根据你的模型输入顺序设置
+network-mode=1        # 使用非动态批次 (与你静态引擎匹配)
+maintain-aspect-ratio=0 # 0=不保持宽高比，直接缩放/裁切到640x640
+
+# 4. 后处理和输出解析配置 (对于YOLO模型至关重要)
+parse-bbox-func-name=NvDsInferParseYolo
+custom-lib-path=libnvds_infercustomparser.so # DeepStream自带的YOLO解析库
+labelfile-path=labels.txt # 你的类别标签文件，每行一个类别名
+
+# 5. 检测阈值
+num-detected-classes=80 # 改为你模型的实际类别数
+cluster-mode=2 # 通常YOLO用2
+gie-unique-id=1
+
+[class-attrs-all]
+pre-cluster-threshold=0.25   # 置信度阈值

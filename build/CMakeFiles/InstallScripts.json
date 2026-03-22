@@ -1,0 +1,7 @@
+{
+	"InstallScripts" : 
+	[
+		"/home/nvidia/Projects/Volleyball_cpp/build/cmake_install.cmake"
+	],
+	"Parallel" : false
+}

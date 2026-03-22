@@ -1,0 +1,23 @@
+{
+  // === 强制指定配置提供者（最关键！）===
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+
+  // === 禁用冲突配置 ===
+  "C_Cpp.default.includePath": [],
+  "C_Cpp.default.defines": [],
+  "C_Cpp.default.compilerPath": "",  // 让 CMake Tools 决定
+
+  // === CMake Tools 配置 ===
+  "cmake.buildDirectory": "${workspaceFolder}/build",
+  "cmake.configureArgs": [
+    "-DCMAKE_EXPORT_COMPILE_COMMANDS=ON",
+    "-DCMAKE_BUILD_TYPE=Debug",
+    "-DCMAKE_CUDA_ARCHITECTURES=87"
+  ],
+  "cmake.configureOnOpen": true,
+  "cmake.autoSelectActiveFolder": true,
+
+  // === 调试日志（排查时开启）===
+  "C_Cpp.loggingLevel": "Debug",
+  "cmake.loggingLevel": "debug"
+}
