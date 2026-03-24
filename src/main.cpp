@@ -22,14 +22,15 @@
 #include "predictor.h"
 
 
+int main();
 
 
 
 // ==================== 全局变量 ====================
 std::queue<std::chrono::high_resolution_clock::time_point> frame_times;
 const int img_width = 1280, img_height = 1024, frame_rate = 200;
-const int FRAME_WINDOW = 100;
-static bool SHOW = true;
+// const int FRAME_WINDOW = 100;
+// static bool SHOW = true;
 int frame_counter = 100;
 int detect_count = 0;
 uint64_t last_frame_time = 0;
@@ -67,7 +68,7 @@ void post_process_thread() {
             0.00000000e+00, 0.00000000e+00,  1.00000000e+00;
 
     Eigen::Vector3d locate_result;
-    
+
 
 
     Predictor predictor(img_width, img_height, radius, MTX, 0, 0);

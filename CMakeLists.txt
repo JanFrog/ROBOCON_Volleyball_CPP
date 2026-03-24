@@ -31,9 +31,7 @@ find_library(TensorRT_LIB nvinfer
     PATHS /usr/lib/aarch64-linux-gnu
     NO_DEFAULT_PATH
 )
-if(NOT TensorRT_INCLUDE_DIR OR NOT TensorRT_LIB)
-    message(FATAL_ERROR "TensorRT not found!")
-endif()
+
 
 # GStreamer
 pkg_check_modules(GSTREAMER REQUIRED IMPORTED_TARGET gstreamer-1.0 gstreamer-video-1.0)
@@ -43,6 +41,8 @@ set(DEEPSTREAM_LIB_PATHS
     /usr/lib/aarch64-linux-gnu
     /opt/nvidia/deepstream/deepstream-6.3/lib
 )
+
+
 find_library(NVDSGST_HELPER_LIB nvdsgst_helper PATHS ${DEEPSTREAM_LIB_PATHS} NO_DEFAULT_PATH)
 find_library(NVDS_META_LIB nvds_meta PATHS ${DEEPSTREAM_LIB_PATHS} NO_DEFAULT_PATH)
 find_library(NVDSGST_META_LIB nvdsgst_meta PATHS ${DEEPSTREAM_LIB_PATHS} NO_DEFAULT_PATH)
