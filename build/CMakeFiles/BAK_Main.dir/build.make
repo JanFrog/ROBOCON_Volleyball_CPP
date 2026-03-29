@@ -76,15 +76,15 @@ CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o: CMakeFiles/BAK_Main.dir/flags.make
 CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp
 CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o: CMakeFiles/BAK_Main.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o -MF CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o.d -o CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o -MF CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o.d -o CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp
 
 CMakeFiles/BAK_Main.dir/src/main_bak.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/BAK_Main.dir/src/main_bak.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp > CMakeFiles/BAK_Main.dir/src/main_bak.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp > CMakeFiles/BAK_Main.dir/src/main_bak.cpp.i
 
 CMakeFiles/BAK_Main.dir/src/main_bak.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/BAK_Main.dir/src/main_bak.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp -o CMakeFiles/BAK_Main.dir/src/main_bak.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp -o CMakeFiles/BAK_Main.dir/src/main_bak.cpp.s
 
 # Object files for target BAK_Main
 BAK_Main_OBJECTS = \
@@ -178,6 +178,9 @@ BAK_Main: /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so
 BAK_Main: /usr/lib/aarch64-linux-gnu/libgstreamer-1.0.so
 BAK_Main: /usr/lib/aarch64-linux-gnu/libgobject-2.0.so
 BAK_Main: /usr/lib/aarch64-linux-gnu/libglib-2.0.so
+BAK_Main: /usr/local/zed/lib/libsl_zed.so
+BAK_Main: /usr/lib/aarch64-linux-gnu/libopenblas.so
+BAK_Main: /usr/lib/aarch64-linux-gnu/libusb-1.0.so
 BAK_Main: libMy_STATIC_LIB.a
 BAK_Main: CMakeFiles/BAK_Main.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable BAK_Main"

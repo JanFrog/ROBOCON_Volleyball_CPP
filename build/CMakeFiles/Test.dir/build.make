@@ -76,15 +76,15 @@ CMakeFiles/Test.dir/src/test.cpp.o: CMakeFiles/Test.dir/flags.make
 CMakeFiles/Test.dir/src/test.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/test.cpp
 CMakeFiles/Test.dir/src/test.cpp.o: CMakeFiles/Test.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Test.dir/src/test.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Test.dir/src/test.cpp.o -MF CMakeFiles/Test.dir/src/test.cpp.o.d -o CMakeFiles/Test.dir/src/test.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/test.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/Test.dir/src/test.cpp.o -MF CMakeFiles/Test.dir/src/test.cpp.o.d -o CMakeFiles/Test.dir/src/test.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/test.cpp
 
 CMakeFiles/Test.dir/src/test.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/Test.dir/src/test.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/test.cpp > CMakeFiles/Test.dir/src/test.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/test.cpp > CMakeFiles/Test.dir/src/test.cpp.i
 
 CMakeFiles/Test.dir/src/test.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/Test.dir/src/test.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/test.cpp -o CMakeFiles/Test.dir/src/test.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/test.cpp -o CMakeFiles/Test.dir/src/test.cpp.s
 
 # Object files for target Test
 Test_OBJECTS = \
@@ -178,6 +178,9 @@ Test: /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so
 Test: /usr/lib/aarch64-linux-gnu/libgstreamer-1.0.so
 Test: /usr/lib/aarch64-linux-gnu/libgobject-2.0.so
 Test: /usr/lib/aarch64-linux-gnu/libglib-2.0.so
+Test: /usr/local/zed/lib/libsl_zed.so
+Test: /usr/lib/aarch64-linux-gnu/libopenblas.so
+Test: /usr/lib/aarch64-linux-gnu/libusb-1.0.so
 Test: libMy_STATIC_LIB.a
 Test: CMakeFiles/Test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Test"

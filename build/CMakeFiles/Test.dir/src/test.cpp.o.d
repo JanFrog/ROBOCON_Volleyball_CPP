@@ -64,12 +64,16 @@ CMakeFiles/Test.dir/src/test.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/select.h \
  /usr/include/aarch64-linux-gnu/bits/types/sigset_t.h \
  /usr/include/aarch64-linux-gnu/bits/types/__sigset_t.h \
+ /usr/include/aarch64-linux-gnu/bits/select2.h \
  /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h \
  /usr/include/aarch64-linux-gnu/bits/thread-shared-types.h \
  /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h \
  /usr/include/aarch64-linux-gnu/bits/struct_mutex.h \
  /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h \
- /usr/include/alloca.h /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/alloca.h \
+ /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h \
+ /usr/include/aarch64-linux-gnu/bits/stdlib-float.h \
+ /usr/include/aarch64-linux-gnu/bits/stdlib.h \
  /usr/include/c++/9/bits/std_abs.h \
  /usr/include/glib-2.0/glib/gbacktrace.h /usr/include/signal.h \
  /usr/include/aarch64-linux-gnu/bits/signum.h \
@@ -154,7 +158,10 @@ CMakeFiles/Test.dir/src/test.cpp.o: \
  /usr/include/glib-2.0/glib/gstrfuncs.h \
  /usr/include/glib-2.0/glib/gstringchunk.h \
  /usr/include/glib-2.0/glib/gtestutils.h /usr/include/string.h \
- /usr/include/strings.h /usr/include/glib-2.0/glib/gthreadpool.h \
+ /usr/include/strings.h \
+ /usr/include/aarch64-linux-gnu/bits/strings_fortified.h \
+ /usr/include/aarch64-linux-gnu/bits/string_fortified.h \
+ /usr/include/glib-2.0/glib/gthreadpool.h \
  /usr/include/glib-2.0/glib/gtimer.h \
  /usr/include/glib-2.0/glib/gtrashstack.h \
  /usr/include/glib-2.0/glib/gtree.h \
@@ -269,17 +276,69 @@ CMakeFiles/Test.dir/src/test.cpp.o: \
  /usr/include/gstreamer-1.0/gst/gsttypefindfactory.h \
  /usr/include/gstreamer-1.0/gst/gstutils.h \
  /usr/include/gstreamer-1.0/gst/gstparse.h \
- /usr/include/gstreamer-1.0/gst/gstcompat.h /usr/include/c++/9/iostream \
- /usr/include/c++/9/ostream /usr/include/c++/9/ios \
- /usr/include/c++/9/iosfwd /usr/include/c++/9/bits/stringfwd.h \
- /usr/include/c++/9/bits/memoryfwd.h /usr/include/c++/9/bits/postypes.h \
- /usr/include/c++/9/cwchar /usr/include/wchar.h \
+ /usr/include/gstreamer-1.0/gst/gstcompat.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/gstnvdsmeta.h \
+ /usr/include/gstreamer-1.0/gst/video/video.h \
+ /usr/include/gstreamer-1.0/gst/video/video-prelude.h \
+ /usr/include/gstreamer-1.0/gst/video/video-format.h \
+ /usr/include/gstreamer-1.0/gst/video/video-enumtypes.h \
+ /usr/include/gstreamer-1.0/gst/video/video-tile.h \
+ /usr/include/gstreamer-1.0/gst/video/video-chroma.h \
+ /usr/include/gstreamer-1.0/gst/video/video-color.h \
+ /usr/include/gstreamer-1.0/gst/video/video-dither.h \
+ /usr/include/gstreamer-1.0/gst/video/video-info.h \
+ /usr/include/gstreamer-1.0/gst/video/video-frame.h \
+ /usr/include/gstreamer-1.0/gst/video/video-converter.h \
+ /usr/include/gstreamer-1.0/gst/video/video-scaler.h \
+ /usr/include/gstreamer-1.0/gst/video/video-resampler.h \
+ /usr/include/gstreamer-1.0/gst/video/video-multiview.h \
+ /usr/include/gstreamer-1.0/gst/video/colorbalancechannel.h \
+ /usr/include/gstreamer-1.0/gst/video/colorbalance.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideoaggregator.h \
+ /usr/include/gstreamer-1.0/gst/base/gstaggregator.h \
+ /usr/include/gstreamer-1.0/gst/base/base-prelude.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideodecoder.h \
+ /usr/include/gstreamer-1.0/gst/base/gstadapter.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideoutils.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideoencoder.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideofilter.h \
+ /usr/include/gstreamer-1.0/gst/base/gstbasetransform.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideometa.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideotimecode.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideopool.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideosink.h \
+ /usr/include/gstreamer-1.0/gst/base/gstbasesink.h \
+ /usr/include/gstreamer-1.0/gst/video/navigation.h \
+ /usr/include/gstreamer-1.0/gst/video/video-blend.h \
+ /usr/include/gstreamer-1.0/gst/video/video-event.h \
+ /usr/include/gstreamer-1.0/gst/video/videodirection.h \
+ /usr/include/gstreamer-1.0/gst/video/videoorientation.h \
+ /usr/include/gstreamer-1.0/gst/video/video-overlay-composition.h \
+ /usr/include/gstreamer-1.0/gst/video/videooverlay.h \
+ /usr/include/gstreamer-1.0/gst/video/gstvideoaffinetransformationmeta.h \
+ /usr/include/gstreamer-1.0/gst/video/video-anc.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvdsmeta.h \
+ /usr/lib/gcc/aarch64-linux-gnu/9/include/stdbool.h \
+ /usr/include/glib-2.0/gmodule.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvll_osd_struct.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvds_roi_meta.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvds_audio_meta.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvdsmeta.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvbufaudio.h \
+ /usr/lib/gcc/aarch64-linux-gnu/9/include/stdint.h /usr/include/stdint.h \
  /usr/include/aarch64-linux-gnu/bits/wchar.h \
- /usr/include/aarch64-linux-gnu/bits/types/wint_t.h \
+ /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h \
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvds_latency_meta.h \
+ /usr/include/c++/9/iostream /usr/include/c++/9/ostream \
+ /usr/include/c++/9/ios /usr/include/c++/9/iosfwd \
+ /usr/include/c++/9/bits/stringfwd.h /usr/include/c++/9/bits/memoryfwd.h \
+ /usr/include/c++/9/bits/postypes.h /usr/include/c++/9/cwchar \
+ /usr/include/wchar.h /usr/include/aarch64-linux-gnu/bits/types/wint_t.h \
  /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h \
  /usr/include/aarch64-linux-gnu/bits/types/__mbstate_t.h \
  /usr/include/aarch64-linux-gnu/bits/types/__FILE.h \
  /usr/include/aarch64-linux-gnu/bits/types/FILE.h \
+ /usr/include/aarch64-linux-gnu/bits/wchar2.h \
  /usr/include/c++/9/exception /usr/include/c++/9/bits/exception.h \
  /usr/include/c++/9/bits/exception_ptr.h \
  /usr/include/c++/9/bits/exception_defines.h \
@@ -300,8 +359,6 @@ CMakeFiles/Test.dir/src/test.cpp.o: \
  /usr/include/c++/9/bits/stl_iterator.h \
  /usr/include/c++/9/bits/ptr_traits.h /usr/include/c++/9/debug/debug.h \
  /usr/include/c++/9/bits/predefined_ops.h /usr/include/c++/9/cstdint \
- /usr/lib/gcc/aarch64-linux-gnu/9/include/stdint.h /usr/include/stdint.h \
- /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h \
  /usr/include/c++/9/bits/localefwd.h \
  /usr/include/aarch64-linux-gnu/c++/9/bits/c++locale.h \
  /usr/include/c++/9/clocale /usr/include/locale.h \
@@ -334,7 +391,9 @@ CMakeFiles/Test.dir/src/test.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/types/cookie_io_functions_t.h \
  /usr/include/aarch64-linux-gnu/bits/stdio_lim.h \
  /usr/include/aarch64-linux-gnu/bits/sys_errlist.h \
- /usr/include/c++/9/cerrno /usr/include/c++/9/bits/basic_string.tcc \
+ /usr/include/aarch64-linux-gnu/bits/stdio.h \
+ /usr/include/aarch64-linux-gnu/bits/stdio2.h /usr/include/c++/9/cerrno \
+ /usr/include/c++/9/bits/basic_string.tcc \
  /usr/include/c++/9/bits/locale_classes.tcc \
  /usr/include/c++/9/system_error \
  /usr/include/aarch64-linux-gnu/c++/9/bits/error_constants.h \
@@ -395,6 +454,7 @@ CMakeFiles/Test.dir/src/test.cpp.o: \
  /usr/include/aarch64-linux-gnu/bits/mathcalls.h \
  /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h \
  /usr/include/aarch64-linux-gnu/bits/iscanonical.h \
+ /usr/include/aarch64-linux-gnu/bits/mathinline.h \
  /usr/include/c++/9/bits/specfun.h /usr/include/c++/9/tr1/gamma.tcc \
  /usr/include/c++/9/tr1/special_function_util.h \
  /usr/include/c++/9/tr1/bessel_function.tcc \

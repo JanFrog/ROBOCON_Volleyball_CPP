@@ -14,6 +14,33 @@
 # EXTERNAL cache entries
 ########################
 
+//Path to a library.
+BLAS_flexiblas_LIBRARY:FILEPATH=BLAS_flexiblas_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_goto2_LIBRARY:FILEPATH=BLAS_goto2_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_mkl_LIBRARY:FILEPATH=BLAS_mkl_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_mkl_em64t_LIBRARY:FILEPATH=BLAS_mkl_em64t_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_mkl_ia32_LIBRARY:FILEPATH=BLAS_mkl_ia32_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_mkl_intel_LIBRARY:FILEPATH=BLAS_mkl_intel_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_mkl_intel_lp64_LIBRARY:FILEPATH=BLAS_mkl_intel_lp64_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_mkl_rt_LIBRARY:FILEPATH=BLAS_mkl_rt_LIBRARY-NOTFOUND
+
+//Path to a library.
+BLAS_openblas_LIBRARY:FILEPATH=/usr/lib/aarch64-linux-gnu/libopenblas.so
+
 //Path to a program.
 CMAKE_ADDR2LINE:FILEPATH=/usr/bin/aarch64-linux-gnu-addr2line
 
@@ -23,9 +50,6 @@ CMAKE_AR:FILEPATH=/usr/bin/aarch64-linux-gnu-ar
 //Choose the type of build, options are: None Debug Release RelWithDebInfo
 // MinSizeRel ...
 CMAKE_BUILD_TYPE:STRING=Debug
-
-//Enable/Disable color output during build.
-CMAKE_COLOR_MAKEFILE:BOOL=ON
 
 //CUDA architecture for Jetson Orin NX (Ampere)
 CMAKE_CUDA_ARCHITECTURES:STRING=87
@@ -95,6 +119,9 @@ CMAKE_EXE_LINKER_FLAGS_RELEASE:STRING=
 //Flags used by the linker during RELWITHDEBINFO builds.
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 
+//Enable/Disable output of build database during the build.
+CMAKE_EXPORT_BUILD_DATABASE:BOOL=
+
 //No help, variable specified on the command line.
 CMAKE_EXPORT_COMPILE_COMMANDS:UNINITIALIZED=ON
 
@@ -107,8 +134,8 @@ CMAKE_INSTALL_PREFIX:PATH=/usr/local
 //Path to a program.
 CMAKE_LINKER:FILEPATH=/usr/bin/aarch64-linux-gnu-ld
 
-//Path to a program.
-CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/make
+//Program used to build from build.ninja files.
+CMAKE_MAKE_PROGRAM:FILEPATH=/usr/bin/ninja
 
 //Flags used by the linker during the creation of modules during
 // all build types.
@@ -255,7 +282,7 @@ CUDA_GENERATED_OUTPUT_DIR:PATH=
 CUDA_HOST_COMPILATION_CPP:BOOL=ON
 
 //Host side compiler used by NVCC
-CUDA_HOST_COMPILER:FILEPATH=
+CUDA_HOST_COMPILER:FILEPATH=/usr/bin/aarch64-linux-gnu-gcc
 
 //Path to a program.
 CUDA_NVCC_EXECUTABLE:FILEPATH=/usr/local/cuda-11.4/bin/nvcc
@@ -295,8 +322,8 @@ CUDA_TOOLKIT_INCLUDE:PATH=/usr/local/cuda-11.4/include
 //Toolkit location.
 CUDA_TOOLKIT_ROOT_DIR:PATH=/usr/local/cuda-11.4
 
-//Use the static version of the CUDA runtime library if available
-CUDA_USE_STATIC_CUDA_RUNTIME:BOOL=ON
+//OFF
+CUDA_USE_STATIC_CUDA_RUNTIME:BOOL=OFF
 
 //Print out the commands run while compiling the CUDA source file.
 //  With the Makefile generator this defaults to VERBOSE variable
@@ -332,7 +359,7 @@ CUDA_cublas_LIBRARY:FILEPATH=/usr/local/cuda-11.4/lib64/libcublas.so
 CUDA_cublas_static_LIBRARY:FILEPATH=/usr/local/cuda-11.4/targets/aarch64-linux/lib/libcublas_static.a
 
 //Path to a library.
-CUDA_cuda_driver_LIBRARY:FILEPATH=/usr/local/cuda-11.4/targets/aarch64-linux/lib/stubs/libcuda.so
+CUDA_cuda_driver_LIBRARY:FILEPATH=/usr/lib/aarch64-linux-gnu/libcuda.so
 
 //"cudadevrt" library
 CUDA_cudadevrt_LIBRARY:FILEPATH=/usr/local/cuda-11.4/lib64/libcudadevrt.a
@@ -482,7 +509,7 @@ CUDA_nvjpeg_LIBRARY:FILEPATH=CUDA_nvjpeg_LIBRARY-NOTFOUND
 CUDA_nvjpeg_static_LIBRARY:FILEPATH=CUDA_nvjpeg_static_LIBRARY-NOTFOUND
 
 //Path to a library.
-CUDA_nvml_LIBRARY:FILEPATH=/usr/local/cuda-11.4/targets/aarch64-linux/lib/stubs/libnvidia-ml.so
+CUDA_nvml_LIBRARY:FILEPATH=CUDA_nvml_LIBRARY-NOTFOUND
 
 //Path to a library.
 CUDA_nvml_static_LIBRARY:FILEPATH=CUDA_nvml_static_LIBRARY-NOTFOUND
@@ -559,6 +586,11 @@ Volleyball_cpp_IS_TOP_LEVEL:STATIC=ON
 //Value Computed by CMake
 Volleyball_cpp_SOURCE_DIR:STATIC=/home/nvidia/Projects/Volleyball_cpp
 
+//The directory containing a CMake configuration file for ZED.
+ZED_DIR:PATH=/usr/local/zed
+
+ZED_FOUND:BOOL=TRUE
+
 //Path to a library.
 pkgcfg_lib_GSTREAMER_glib-2.0:FILEPATH=/usr/lib/aarch64-linux-gnu/libglib-2.0.so
 
@@ -579,6 +611,28 @@ pkgcfg_lib_GSTREAMER_gstvideo-1.0:FILEPATH=/usr/lib/aarch64-linux-gnu/libgstvide
 # INTERNAL cache entries
 ########################
 
+//Have function sgemm_
+BLAS_WORKS:INTERNAL=
+//ADVANCED property for variable: BLAS_flexiblas_LIBRARY
+BLAS_flexiblas_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_goto2_LIBRARY
+BLAS_goto2_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_LIBRARY
+BLAS_mkl_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_em64t_LIBRARY
+BLAS_mkl_em64t_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_ia32_LIBRARY
+BLAS_mkl_ia32_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_intel_LIBRARY
+BLAS_mkl_intel_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_intel_lp64_LIBRARY
+BLAS_mkl_intel_lp64_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_mkl_rt_LIBRARY
+BLAS_mkl_rt_LIBRARY-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: BLAS_openblas_LIBRARY
+BLAS_openblas_LIBRARY-ADVANCED:INTERNAL=1
+//Have function sgemm_
+BLAS_openblas_WORKS:INTERNAL=1
 //ADVANCED property for variable: CMAKE_ADDR2LINE
 CMAKE_ADDR2LINE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_AR
@@ -591,8 +645,6 @@ CMAKE_CACHE_MAJOR_VERSION:INTERNAL=4
 CMAKE_CACHE_MINOR_VERSION:INTERNAL=2
 //Patch version of cmake used to create the current loaded cache
 CMAKE_CACHE_PATCH_VERSION:INTERNAL=0
-//ADVANCED property for variable: CMAKE_COLOR_MAKEFILE
-CMAKE_COLOR_MAKEFILE-ADVANCED:INTERNAL=1
 //Path to CMake executable.
 CMAKE_COMMAND:INTERNAL=/usr/local/bin/cmake
 //Path to cpack program executable.
@@ -643,12 +695,12 @@ CMAKE_EXE_LINKER_FLAGS_MINSIZEREL-ADVANCED:INTERNAL=1
 CMAKE_EXE_LINKER_FLAGS_RELEASE-ADVANCED:INTERNAL=1
 //ADVANCED property for variable: CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO
 CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO-ADVANCED:INTERNAL=1
-//ADVANCED property for variable: CMAKE_EXPORT_COMPILE_COMMANDS
-CMAKE_EXPORT_COMPILE_COMMANDS-ADVANCED:INTERNAL=1
+//ADVANCED property for variable: CMAKE_EXPORT_BUILD_DATABASE
+CMAKE_EXPORT_BUILD_DATABASE-ADVANCED:INTERNAL=1
 //Name of external makefile project generator.
 CMAKE_EXTRA_GENERATOR:INTERNAL=
 //Name of generator.
-CMAKE_GENERATOR:INTERNAL=Unix Makefiles
+CMAKE_GENERATOR:INTERNAL=Ninja
 //Generator instance identifier.
 CMAKE_GENERATOR_INSTANCE:INTERNAL=
 //Name of generator platform.
@@ -927,8 +979,10 @@ CUDA_pcsamplingutil_LIBRARY-ADVANCED:INTERNAL=1
 CUDA_rt_LIBRARY-ADVANCED:INTERNAL=1
 //Location of run_nvcc.cmake
 CUDA_run_nvcc:INTERNAL=/usr/local/share/cmake-4.2/Modules/FindCUDA/run_nvcc.cmake
+//Details about finding BLAS
+FIND_PACKAGE_MESSAGE_DETAILS_BLAS:INTERNAL=[/usr/lib/aarch64-linux-gnu/libopenblas.so][v()]
 //Details about finding CUDA
-FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[/usr/local/cuda-11.4][/usr/local/cuda-11.4/bin/nvcc][/usr/local/cuda-11.4/include][/usr/local/cuda-11.4/lib64/libcudart_static.a][v11.4(11.4)]
+FIND_PACKAGE_MESSAGE_DETAILS_CUDA:INTERNAL=[/usr/local/cuda-11.4][/usr/local/cuda-11.4/bin/nvcc][/usr/local/cuda-11.4/include][/usr/local/cuda-11.4/lib64/libcudart.so][v11.4(11.4)]
 //Details about finding CUDAToolkit
 FIND_PACKAGE_MESSAGE_DETAILS_CUDAToolkit:INTERNAL=[/usr/local/cuda-11.4/targets/aarch64-linux/include][/usr/local/cuda-11.4/targets/aarch64-linux/lib/libcudart.so][/usr/local/cuda-11.4/bin][v11.4.315()]
 //Details about finding OpenCV

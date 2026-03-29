@@ -76,71 +76,71 @@ CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o: CMakeFiles/My_SHARED_LIB.
 CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.i
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.s
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.i
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.s
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.i
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.s
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.i
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.s
 
 # Object files for target My_SHARED_LIB
 My_SHARED_LIB_OBJECTS = \

@@ -76,15 +76,15 @@ CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o: CMakeFiles/My_STAT
 CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp
 CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o: CMakeFiles/My_STATIC_LIB.dir/compiler_depend.ts
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o -MF CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o.d -o CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o -MF CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o.d -o CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp
 
 CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.i"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp > CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.i
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp > CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.i
 
 CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.s"
-	/usr/bin/aarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp -o CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.s
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp -o CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.s
 
 # Object files for target My_STATIC_LIB
 My_STATIC_LIB_OBJECTS = \

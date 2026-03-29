@@ -7,7 +7,7 @@
 #include <queue>
 #include <iomanip>
 #include <thread>
-#include <nvdsmeta.h>
+// #include <nvdsmeta.h>
 #include "gstnvdsmeta.h" 
 #include <glib-unix.h>
 

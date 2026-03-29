@@ -3,6 +3,13 @@
 
 CMakeFiles/Test.dir/src/test.cpp.o
  /home/nvidia/Projects/Volleyball_cpp/src/test.cpp
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/gstnvdsmeta.h
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvbufaudio.h
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvds_audio_meta.h
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvds_latency_meta.h
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvds_roi_meta.h
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvdsmeta.h
+ /opt/nvidia/deepstream/deepstream-6.3/sources/includes/nvll_osd_struct.h
  /usr/include/aarch64-linux-gnu/asm/bitsperlong.h
  /usr/include/aarch64-linux-gnu/asm/errno.h
  /usr/include/aarch64-linux-gnu/asm/posix_types.h
@@ -31,6 +38,7 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/include/aarch64-linux-gnu/bits/mathcalls-helper-functions.h
  /usr/include/aarch64-linux-gnu/bits/mathcalls-narrow.h
  /usr/include/aarch64-linux-gnu/bits/mathcalls.h
+ /usr/include/aarch64-linux-gnu/bits/mathinline.h
  /usr/include/aarch64-linux-gnu/bits/posix1_lim.h
  /usr/include/aarch64-linux-gnu/bits/posix2_lim.h
  /usr/include/aarch64-linux-gnu/bits/procfs-extra.h
@@ -41,6 +49,7 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h
  /usr/include/aarch64-linux-gnu/bits/sched.h
  /usr/include/aarch64-linux-gnu/bits/select.h
+ /usr/include/aarch64-linux-gnu/bits/select2.h
  /usr/include/aarch64-linux-gnu/bits/setjmp.h
  /usr/include/aarch64-linux-gnu/bits/sigaction.h
  /usr/include/aarch64-linux-gnu/bits/sigcontext.h
@@ -56,8 +65,14 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/include/aarch64-linux-gnu/bits/ss_flags.h
  /usr/include/aarch64-linux-gnu/bits/stdint-intn.h
  /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h
+ /usr/include/aarch64-linux-gnu/bits/stdio.h
+ /usr/include/aarch64-linux-gnu/bits/stdio2.h
  /usr/include/aarch64-linux-gnu/bits/stdio_lim.h
+ /usr/include/aarch64-linux-gnu/bits/stdlib-bsearch.h
  /usr/include/aarch64-linux-gnu/bits/stdlib-float.h
+ /usr/include/aarch64-linux-gnu/bits/stdlib.h
+ /usr/include/aarch64-linux-gnu/bits/string_fortified.h
+ /usr/include/aarch64-linux-gnu/bits/strings_fortified.h
  /usr/include/aarch64-linux-gnu/bits/struct_mutex.h
  /usr/include/aarch64-linux-gnu/bits/struct_rwlock.h
  /usr/include/aarch64-linux-gnu/bits/sys_errlist.h
@@ -103,6 +118,7 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/include/aarch64-linux-gnu/bits/waitflags.h
  /usr/include/aarch64-linux-gnu/bits/waitstatus.h
  /usr/include/aarch64-linux-gnu/bits/wchar.h
+ /usr/include/aarch64-linux-gnu/bits/wchar2.h
  /usr/include/aarch64-linux-gnu/bits/wctype-wchar.h
  /usr/include/aarch64-linux-gnu/bits/wordsize.h
  /usr/include/aarch64-linux-gnu/bits/xopen_lim.h
@@ -395,6 +411,7 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/include/glib-2.0/glib/gvarianttype.h
  /usr/include/glib-2.0/glib/gversion.h
  /usr/include/glib-2.0/glib/gversionmacros.h
+ /usr/include/glib-2.0/gmodule.h
  /usr/include/glib-2.0/gobject/gbinding.h
  /usr/include/glib-2.0/gobject/gboxed.h
  /usr/include/glib-2.0/gobject/gclosure.h
@@ -414,6 +431,11 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/include/glib-2.0/gobject/gvalue.h
  /usr/include/glib-2.0/gobject/gvaluearray.h
  /usr/include/glib-2.0/gobject/gvaluetypes.h
+ /usr/include/gstreamer-1.0/gst/base/base-prelude.h
+ /usr/include/gstreamer-1.0/gst/base/gstadapter.h
+ /usr/include/gstreamer-1.0/gst/base/gstaggregator.h
+ /usr/include/gstreamer-1.0/gst/base/gstbasesink.h
+ /usr/include/gstreamer-1.0/gst/base/gstbasetransform.h
  /usr/include/gstreamer-1.0/gst/glib-compat.h
  /usr/include/gstreamer-1.0/gst/gst.h
  /usr/include/gstreamer-1.0/gst/gstallocator.h
@@ -489,6 +511,40 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/include/gstreamer-1.0/gst/gstutils.h
  /usr/include/gstreamer-1.0/gst/gstvalue.h
  /usr/include/gstreamer-1.0/gst/gstversion.h
+ /usr/include/gstreamer-1.0/gst/video/colorbalance.h
+ /usr/include/gstreamer-1.0/gst/video/colorbalancechannel.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideoaffinetransformationmeta.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideoaggregator.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideodecoder.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideoencoder.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideofilter.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideometa.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideopool.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideosink.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideotimecode.h
+ /usr/include/gstreamer-1.0/gst/video/gstvideoutils.h
+ /usr/include/gstreamer-1.0/gst/video/navigation.h
+ /usr/include/gstreamer-1.0/gst/video/video-anc.h
+ /usr/include/gstreamer-1.0/gst/video/video-blend.h
+ /usr/include/gstreamer-1.0/gst/video/video-chroma.h
+ /usr/include/gstreamer-1.0/gst/video/video-color.h
+ /usr/include/gstreamer-1.0/gst/video/video-converter.h
+ /usr/include/gstreamer-1.0/gst/video/video-dither.h
+ /usr/include/gstreamer-1.0/gst/video/video-enumtypes.h
+ /usr/include/gstreamer-1.0/gst/video/video-event.h
+ /usr/include/gstreamer-1.0/gst/video/video-format.h
+ /usr/include/gstreamer-1.0/gst/video/video-frame.h
+ /usr/include/gstreamer-1.0/gst/video/video-info.h
+ /usr/include/gstreamer-1.0/gst/video/video-multiview.h
+ /usr/include/gstreamer-1.0/gst/video/video-overlay-composition.h
+ /usr/include/gstreamer-1.0/gst/video/video-prelude.h
+ /usr/include/gstreamer-1.0/gst/video/video-resampler.h
+ /usr/include/gstreamer-1.0/gst/video/video-scaler.h
+ /usr/include/gstreamer-1.0/gst/video/video-tile.h
+ /usr/include/gstreamer-1.0/gst/video/video.h
+ /usr/include/gstreamer-1.0/gst/video/videodirection.h
+ /usr/include/gstreamer-1.0/gst/video/videoorientation.h
+ /usr/include/gstreamer-1.0/gst/video/videooverlay.h
  /usr/include/libintl.h
  /usr/include/limits.h
  /usr/include/linux/errno.h
@@ -516,6 +572,7 @@ CMakeFiles/Test.dir/src/test.cpp.o
  /usr/lib/gcc/aarch64-linux-gnu/9/include/float.h
  /usr/lib/gcc/aarch64-linux-gnu/9/include/limits.h
  /usr/lib/gcc/aarch64-linux-gnu/9/include/stdarg.h
+ /usr/lib/gcc/aarch64-linux-gnu/9/include/stdbool.h
  /usr/lib/gcc/aarch64-linux-gnu/9/include/stddef.h
  /usr/lib/gcc/aarch64-linux-gnu/9/include/stdint.h
  /usr/lib/gcc/aarch64-linux-gnu/9/include/syslimits.h

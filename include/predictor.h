@@ -47,7 +47,7 @@ public:
                             Eigen::VectorXd& filtered_point,
                             bool get_filtered_point);
 
-    bool push_get_tmp();
+    // bool push_get_tmp();
 
 private:
     int que_size_;

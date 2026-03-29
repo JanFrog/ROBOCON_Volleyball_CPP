@@ -194,6 +194,19 @@ Module_Test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Module_Test.dir/build.make CMakeFiles/Module_Test.dir/build
 .PHONY : Module_Test/fast
 
+#=============================================================================
+# Target rules for targets named ZED_legacy
+
+# Build rule for target.
+ZED_legacy: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 ZED_legacy
+.PHONY : ZED_legacy
+
+# fast build rule for target.
+ZED_legacy/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZED_legacy.dir/build.make CMakeFiles/ZED_legacy.dir/build
+.PHONY : ZED_legacy/fast
+
 src/lib/coordinator.o: src/lib/coordinator.cpp.o
 .PHONY : src/lib/coordinator.o
 
@@ -434,6 +447,30 @@ src/test.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Test.dir/build.make CMakeFiles/Test.dir/src/test.cpp.s
 .PHONY : src/test.cpp.s
 
+src/zed_legacy_api.o: src/zed_legacy_api.cpp.o
+.PHONY : src/zed_legacy_api.o
+
+# target to build an object file
+src/zed_legacy_api.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZED_legacy.dir/build.make CMakeFiles/ZED_legacy.dir/src/zed_legacy_api.cpp.o
+.PHONY : src/zed_legacy_api.cpp.o
+
+src/zed_legacy_api.i: src/zed_legacy_api.cpp.i
+.PHONY : src/zed_legacy_api.i
+
+# target to preprocess a source file
+src/zed_legacy_api.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZED_legacy.dir/build.make CMakeFiles/ZED_legacy.dir/src/zed_legacy_api.cpp.i
+.PHONY : src/zed_legacy_api.cpp.i
+
+src/zed_legacy_api.s: src/zed_legacy_api.cpp.s
+.PHONY : src/zed_legacy_api.s
+
+# target to generate assembly for a file
+src/zed_legacy_api.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZED_legacy.dir/build.make CMakeFiles/ZED_legacy.dir/src/zed_legacy_api.cpp.s
+.PHONY : src/zed_legacy_api.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -448,6 +485,7 @@ help:
 	@echo "... My_SHARED_LIB"
 	@echo "... My_STATIC_LIB"
 	@echo "... Test"
+	@echo "... ZED_legacy"
 	@echo "... src/lib/coordinator.o"
 	@echo "... src/lib/coordinator.i"
 	@echo "... src/lib/coordinator.s"
@@ -478,6 +516,9 @@ help:
 	@echo "... src/test.o"
 	@echo "... src/test.i"
 	@echo "... src/test.s"
+	@echo "... src/zed_legacy_api.o"
+	@echo "... src/zed_legacy_api.i"
+	@echo "... src/zed_legacy_api.s"
 .PHONY : help
 
 

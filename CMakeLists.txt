@@ -1,6 +1,18 @@
 
 cmake_minimum_required(VERSION 3.16)
+
+# # 消除 FindCUDA 和 exec_program 废弃警告
+# cmake_policy(SET CMP0146 NEW)
+# cmake_policy(SET CMP0153 NEW)
+
 project(Volleyball_cpp LANGUAGES CXX CUDA)
+
+
+
+
+
+
+
 
 # --- 基础配置 ---
 set(CMAKE_CXX_STANDARD 17)
@@ -9,11 +21,21 @@ set(CMAKE_CXX_EXTENSIONS OFF)
 
 # 默认构建类型（允许用户通过 -DCMAKE_BUILD_TYPE 覆盖）
 if(NOT CMAKE_BUILD_TYPE)
-    set(CMAKE_BUILD_TYPE "Debug" CACHE STRING "Build type (Debug/Release)" FORCE)
+    set(CMAKE_BUILD_TYPE "Release" CACHE STRING "Build type (Debug/Release)" FORCE)
 endif()
 
 # Jetson Orin NX: Ampere 架构 (SM 87)
 set(CMAKE_CUDA_ARCHITECTURES "87" CACHE STRING "CUDA architecture for Jetson Orin NX (Ampere)")
+
+
+
+
+
+
+
+
+
+
 
 # --- 查找依赖 ---
 # 标准 CMake 包
@@ -21,6 +43,11 @@ find_package(OpenCV REQUIRED)
 find_package(Eigen3 REQUIRED)
 find_package(CUDAToolkit REQUIRED)
 find_package(PkgConfig REQUIRED)
+find_package(ZED REQUIRED)
+include_directories(${ZED_INCLUDE_DIRS})
+
+ 
+
 
 # TensorRT (DeepStream 未提供标准 CMake config，需手动查找)
 find_path(TensorRT_INCLUDE_DIR NvInfer.h
@@ -58,9 +85,18 @@ endif()
 
 set(DEEPSTREAM_INCLUDE_DIR "/opt/nvidia/deepstream/deepstream-6.3/sources/includes")
 
+
+
+
+
+
+
 # --- 公共接口库 (封装所有第三方依赖) ---
 add_library(ProjectDeps INTERFACE)
 
+
+
+message(STATUS "ZED_INCLUDE_DIR = ${ZED_INCLUDE_DIRS}")
 target_include_directories(ProjectDeps INTERFACE
     ${OpenCV_INCLUDE_DIRS}
     ${EIGEN3_INCLUDE_DIR}
@@ -69,7 +105,11 @@ target_include_directories(ProjectDeps INTERFACE
     ${DEEPSTREAM_INCLUDE_DIR}
     ${GSTREAMER_INCLUDE_DIRS}
     ${CMAKE_CURRENT_SOURCE_DIR}/include
+
+    ${ZED_INCLUDE_DIRS}
+
 )
+
 
 target_link_libraries(ProjectDeps INTERFACE
     
@@ -99,13 +139,27 @@ target_link_libraries(ProjectDeps INTERFACE
     glib-2.0
     gobject-2.0
     pthread
+
+    ${ZED_LIBRARIES}
 )
 
 target_compile_definitions(ProjectDeps INTERFACE DEEPSTREAM_ENABLED)
 
+get_target_property(inc_dirs ProjectDeps INTERFACE_INCLUDE_DIRECTORIES)
+message(STATUS "ProjectDeps INTERFACE_INCLUDE_DIRECTORIES: ${inc_dirs}")
+
+
+
+
+
+
+
+
+
 # --- 项目内部库 ---
 add_library(My_STATIC_LIB STATIC
     src/lib/exposure_recorder.cpp
+    # ZED SDK
 )
 
 target_include_directories(My_STATIC_LIB PUBLIC
@@ -122,8 +176,19 @@ add_library(My_SHARED_LIB SHARED
     src/lib/predictor.cpp
 )
 
+
 # 共享库自动继承静态库的 PUBLIC 接口
 target_link_libraries(My_SHARED_LIB PUBLIC My_STATIC_LIB)
+
+
+
+
+
+
+
+
+
+
 
 # --- 可执行文件 ---
 add_executable(Main src/main.cpp)
@@ -138,8 +203,13 @@ target_link_libraries(Test PRIVATE ProjectDeps My_SHARED_LIB)
 add_executable(Module_Test src/module_test.cpp)
 target_link_libraries(Module_Test PRIVATE ProjectDeps My_SHARED_LIB)
 
+add_executable(ZED_legacy src/zed_legacy_api.cpp)  
+target_link_libraries(ZED_legacy PRIVATE ProjectDeps My_SHARED_LIB)
+target_include_directories(ZED_legacy PRIVATE ${ZED_INCLUDE_DIRS})   # 新增这一行
+
+
 # # --- 构建输出目录优化 (可选) ---
-# set_target_properties(Main Test My_SHARED_LIB PROPERTIES
+# set_target_properties(Main Test BAK_Main ZED_legacy Module_Test My_SHARED_LIB PROPERTIES
 #     RUNTIME_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/bin"
 #     LIBRARY_OUTPUT_DIRECTORY "${CMAKE_BINARY_DIR}/lib"
 # )

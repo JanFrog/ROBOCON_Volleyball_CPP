@@ -1,62 +1,68 @@
 [
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++  -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -o CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -D_DEBUG -I/usr/local/zed/include -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -o CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/lib/exposure_recorder.cpp",
-  "output": "CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -D_DEBUG -I/usr/local/zed/include -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp",
-  "output": "CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -D_DEBUG -I/usr/local/zed/include -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp",
-  "output": "CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -D_DEBUG -I/usr/local/zed/include -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp",
-  "output": "CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -D_DEBUG -I/usr/local/zed/include -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp",
-  "output": "CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DMy_SHARED_LIB_EXPORTS -D_DEBUG -I/usr/local/zed/include -I/home/nvidia/Projects/Volleyball_cpp/include -I/usr/local/include/opencv4 -g -std=c++17 -fPIC -o CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp",
-  "output": "CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/Main.dir/src/main.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/main.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -D_DEBUG -I/usr/local/zed/include -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/Main.dir/src/main.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/main.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/main.cpp",
-  "output": "CMakeFiles/Main.dir/src/main.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/Main.dir/src/main.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -D_DEBUG -I/usr/local/zed/include -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/main_bak.cpp",
-  "output": "CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/BAK_Main.dir/src/main_bak.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/Test.dir/src/test.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/test.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -D_DEBUG -I/usr/local/zed/include -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/Test.dir/src/test.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/test.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/test.cpp",
-  "output": "CMakeFiles/Test.dir/src/test.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/Test.dir/src/test.cpp.o"
 },
 {
   "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
-  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/Module_Test.dir/src/module_test.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/module_test.cpp",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -D_DEBUG -I/usr/local/zed/include -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/Module_Test.dir/src/module_test.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/module_test.cpp",
   "file": "/home/nvidia/Projects/Volleyball_cpp/src/module_test.cpp",
-  "output": "CMakeFiles/Module_Test.dir/src/module_test.cpp.o"
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/Module_Test.dir/src/module_test.cpp.o"
+},
+{
+  "directory": "/home/nvidia/Projects/Volleyball_cpp/build",
+  "command": "/usr/bin/aarch64-linux-gnu-g++ -DDEEPSTREAM_ENABLED -D_DEBUG -I/usr/local/zed/include -I/opt/nvidia/deepstream/deepstream-6.3/sources/includes -I/home/nvidia/Projects/Volleyball_cpp/include -isystem /usr/local/include/opencv4 -isystem /usr/local/cuda-11.4/targets/aarch64-linux/include -isystem /usr/include/gstreamer-1.0 -isystem /usr/include/orc-0.4 -isystem /usr/include/glib-2.0 -isystem /usr/lib/aarch64-linux-gnu/glib-2.0/include -g -std=c++17 -pthread -o CMakeFiles/ZED_legacy.dir/src/zed_legacy_api.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/zed_legacy_api.cpp",
+  "file": "/home/nvidia/Projects/Volleyball_cpp/src/zed_legacy_api.cpp",
+  "output": "/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/ZED_legacy.dir/src/zed_legacy_api.cpp.o"
 }
 ]
