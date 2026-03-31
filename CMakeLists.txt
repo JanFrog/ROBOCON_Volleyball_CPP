@@ -174,6 +174,7 @@ add_library(My_SHARED_LIB SHARED
     src/lib/filter.cpp
     src/lib/points_generator.cpp
     src/lib/predictor.cpp
+    src/lib/CAN.cpp
 )
 
 

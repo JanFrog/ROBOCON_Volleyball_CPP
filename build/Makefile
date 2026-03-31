@@ -207,6 +207,30 @@ ZED_legacy/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/ZED_legacy.dir/build.make CMakeFiles/ZED_legacy.dir/build
 .PHONY : ZED_legacy/fast
 
+src/lib/CAN.o: src/lib/CAN.cpp.o
+.PHONY : src/lib/CAN.o
+
+# target to build an object file
+src/lib/CAN.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_SHARED_LIB.dir/build.make CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o
+.PHONY : src/lib/CAN.cpp.o
+
+src/lib/CAN.i: src/lib/CAN.cpp.i
+.PHONY : src/lib/CAN.i
+
+# target to preprocess a source file
+src/lib/CAN.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_SHARED_LIB.dir/build.make CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.i
+.PHONY : src/lib/CAN.cpp.i
+
+src/lib/CAN.s: src/lib/CAN.cpp.s
+.PHONY : src/lib/CAN.s
+
+# target to generate assembly for a file
+src/lib/CAN.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_SHARED_LIB.dir/build.make CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.s
+.PHONY : src/lib/CAN.cpp.s
+
 src/lib/coordinator.o: src/lib/coordinator.cpp.o
 .PHONY : src/lib/coordinator.o
 
@@ -486,6 +510,9 @@ help:
 	@echo "... My_STATIC_LIB"
 	@echo "... Test"
 	@echo "... ZED_legacy"
+	@echo "... src/lib/CAN.o"
+	@echo "... src/lib/CAN.i"
+	@echo "... src/lib/CAN.s"
 	@echo "... src/lib/coordinator.o"
 	@echo "... src/lib/coordinator.i"
 	@echo "... src/lib/coordinator.s"

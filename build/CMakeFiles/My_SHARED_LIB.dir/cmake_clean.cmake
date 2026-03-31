@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o"
+  "CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o.d"
   "CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o"
   "CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o.d"
   "CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o"
