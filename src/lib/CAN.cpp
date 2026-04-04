@@ -4,7 +4,7 @@
 
 
 
-CAN::CAN(const std::string interface_name, int bitrate, bool enable_canfd, int data_bitrate, bool extend_id)      // 构造函数
+CAN::CAN(const std::string interface_name, int bitrate, bool enable_canfd, int data_bitrate)      // 构造函数
 {
     this->config.interface_name = interface_name;
     this->config.bitrate = bitrate;
@@ -12,34 +12,35 @@ CAN::CAN(const std::string interface_name, int bitrate, bool enable_canfd, int d
     this->config.data_bitrate = data_bitrate;
 
     this->sock = -1;
-    this->activated = false;
+    this->ACTIVATED = false;
 
     // 检查 root 权限
     if (geteuid() != 0) {
         std::cout << "[Warn]  root 权限缺失" << std::endl;
     }
 
-    if (extend_id)
-    {
-        this->id_mask = 0b00011111111111111111111111111111;      // 扩展ID掩码 (29bit)
-    }
-    else
-    {
-        this->id_mask = 0b00000000000000000000011111111111;      // 标准ID掩码 (11bit)
-    }
 }
 
 CAN::CAN(const CAN_PARAMETERS& params)      // 构造函数
 {
     this->config = params;
     this->sock = -1;
-    this->activated = false;
+    this->ACTIVATED = false;
 
     // 检查 root 权限
     if (geteuid() != 0) {
         std::cout << "[Warn]  root 权限缺失" << std::endl;
     }
 }
+
+
+
+CAN::CAN()
+{
+    this->sock = -1;
+    this->ACTIVATED = false;
+}
+
 
 
 CAN::~CAN()
@@ -70,6 +71,13 @@ bool CAN::activate(std::stringstream& logger)    // 激活 CAN 接口
     if (geteuid() != 0) {
         logger << "[Error] Root privileges required !" << std::endl;
         return false;
+    }
+
+    // 先关闭 socket
+    if(!this->sock<0)
+    {
+        close(this->sock);
+        this->sock = -1;
     }
 
 
@@ -183,9 +191,38 @@ bool CAN::activate(std::stringstream& logger)    // 激活 CAN 接口
 
 
 
+
+
+
+    // 开启socket CAN FD模式
+    if (this->config.enable_canfd) 
+    {
+        int fd_flags = 1;
+        if (setsockopt(this->sock, SOL_CAN_RAW, CAN_RAW_FD_FRAMES,
+                    &fd_flags, sizeof(fd_flags)) < 0) {
+            std::error_code ec{errno, std::system_category()};
+            logger << "[Error] Failed to enable CAN_RAW_FD_FRAMES: " << ec.message() << std::endl;
+            close(this->sock);
+            return false;
+        }
+        logger << "[Info]  CAN FD frames enabled on socket" << std::endl;
+    }
+
+
+
+
+
+
+
+
+
+
+
+    // 激活成功
     logger << "[Info]  CAN Interface '" << this->config.interface_name << "' activated successfully !" << std::endl;
 
     logger << "[Info]  name:" << this->config.interface_name << " type:" << (this->config.enable_canfd ? "canfd":"can") << " bitrate:" << this->config.bitrate << "bps";
+
     if(this->config.enable_canfd)
     {
         logger << " dbitrate:" << this->config.data_bitrate << "bps" << std::endl;
@@ -195,7 +232,9 @@ bool CAN::activate(std::stringstream& logger)    // 激活 CAN 接口
     }
 
 
-    this->activated = true;
+
+
+    this->ACTIVATED = true;
 
     return true;
 }
@@ -205,7 +244,7 @@ bool CAN::activate(std::stringstream& logger)    // 激活 CAN 接口
 
 
 
-
+// 取消激活CAN接口
 bool CAN::deactivate(std::stringstream& logger)
 {
     if (this->sock >= 0) {
@@ -235,7 +274,7 @@ bool CAN::deactivate(std::stringstream& logger)
 
 
 
-    this->activated = false;
+    this->ACTIVATED = false;
     
     return true;
 }
@@ -246,6 +285,7 @@ bool CAN::deactivate(std::stringstream& logger)
 
 
 
+// 设置CAN参数
 bool CAN::set_parameters(const CAN_PARAMETERS& params, std::stringstream& logger){
     this->config = params;
     return this->activate(logger);
@@ -257,47 +297,167 @@ bool CAN::set_parameters(const CAN_PARAMETERS& params, std::stringstream& logger
 
 
 
-bool CAN::send(uint32_t id, uint8_t len, void* data, std::stringstream& logger)
+// 发送CAN帧
+bool CAN::send(uint32_t id, uint8_t data_len, void* data, std::stringstream& logger)
 {
     // 检查接口状态
-    if (!this->activated)
+    if (!this->ACTIVATED)
     {
         logger << "[Error] CAN Interface is not activated !" << std::endl;
         return false;
     }
 
     // 检查数据指针是否为空
-    if(data == nullptr || len == 0)
+    if(data == nullptr || data_len == 0)
     {
         logger << "[Error] Data pointer is null or data length is 0 !" << std::endl;
         return false;
     }
 
     // 检查数据长度是否超过最大长度
-    if(len > (this->config.enable_canfd ? 64 : 8))
+    if(data_len > (this->config.enable_canfd ? 64 : 8))
     {
         logger << "[Error] Data length is too long for current CAN mode !" << std::endl;
         return false;
     }
 
 
-    memset(&this->Frame, 0, sizeof(this->Frame));
-
-
-    // 构建CAN帧(暂未完成FD模式)
-    this->Frame.can_id = id;
-    this->Frame.can_dlc = len;
-    memcpy(this->Frame.data, data, len);
-
-    size_t ret = write(this->sock, &this->Frame, sizeof(this->Frame));
-    if(ret!= sizeof(this->Frame))
+    if(!this->config.enable_canfd)
     {
+        memset(&this->Frame, 0, sizeof(this->Frame));
+
+
+        // 构建CAN帧(暂未完成FD模式)
+        this->Frame.can_id = id;
+        this->Frame.can_dlc = data_len;
+
+
+        for(int i = 0; i < data_len; i++)
+        {
+            this->Frame.data[data_len - i - 1] = *((uint8_t*)data + i);
+        }
+
+
+
+
+        size_t ret = write(this->sock, &this->Frame, CAN_MTU);
+        if(ret!= CAN_MTU)
+        {
+            std::error_code ec{errno, std::system_category()};
+            logger << "[Error] Failed to send CAN frame: " << ret << std::endl;
+            logger << "[Error] Error message: " << ec.message() << std::endl;
+
+            return false;
+        }
+    }
+
+    else
+    {
+        memset(&this->Frame_FD, 0, sizeof(this->Frame_FD));
+
+
+        this->Frame_FD.flags = CANFD_BRS;
+        this->Frame_FD.can_id = id;
+        this->Frame_FD.len = data_len;
+
+
+
+        for(int i = 0; i < data_len; i++)
+        {
+            this->Frame_FD.data[data_len - i - 1] = *((uint8_t*)data + i);
+        }
+
+
+
+
+        size_t ret = write(this->sock, &this->Frame_FD, CANFD_MTU);
+        if(ret!= CANFD_MTU)
+        {
+            std::error_code ec{errno, std::system_category()};
+            logger << "[Error] Failed to send CANFD frame: " << ret << std::endl;
+            logger << "[Error] Error message: " << ec.message() << std::endl;
+
+            return false;
+        }
+    }
+    return true;
+}
+
+
+
+// 接收CAN帧
+bool CAN::receive(can_frame& frame, std::stringstream& logger)
+{
+    // 检查接口状态
+    if (!this->ACTIVATED) {
+        logger << "[Error] CAN Interface is not activated !" << std::endl;
+        return false;
+    }
+    if(this->config.enable_canfd)
+    {
+        logger << "[Error] CANFD mode not matched ! (Current: " << (this->config.enable_canfd ? "canfd":"can") << ")" << std::endl;
+        return false;
+    }
+
+    ssize_t ret = read(this->sock, &frame, CAN_MTU);
+    if (ret == -1) {
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            logger << "[Info]  no CAN frame received" << std::endl;
+            // 无数据可用
+            return false;
+        }
+
         std::error_code ec{errno, std::system_category()};
-        logger << "[Error] Failed to send CAN frame: " << ret << std::endl;
+        logger << "[Error] Failed to receive CAN frame: " << ec.message() << std::endl;
+
+        return false;
+
+    }
+    if (ret != CAN_MTU) {
+
+        logger << "[Error] Incomplete CAN frame received: " << ret << " bytes" << std::endl;
+        return false;
+    }
+
+
+    return true;
+}
+
+// 接收CANFD帧
+bool CAN::receive(canfd_frame& frame, std::stringstream& logger)
+{
+    // 检查接口状态
+    if (!this->ACTIVATED) {
+        logger << "[Error] CAN Interface is not activated !" << std::endl;
+        return false;
+    }
+
+    if(!this->config.enable_canfd)
+    {
+        logger << "[Error] CANFD mode not matched ! (Current: " << (this->config.enable_canfd ? "canfd":"can") << ")" << std::endl;
+        return false;
+    }
+
+    
+    ssize_t ret = read(this->sock, &frame, CANFD_MTU);
+    if (ret == -1) {
+        if (errno == EAGAIN || errno == EWOULDBLOCK) {
+            logger << "[Info]  no CAN frame received" << std::endl;
+            // 无数据可用
+            return false;
+        }
+        std::error_code ec{errno, std::system_category()};
+        logger << "[Error] Failed to receive CANFD frame: " << ec.message() << std::endl;
+        return false;
+    }
+    if (ret != CANFD_MTU) {
+        std::error_code ec{errno, std::system_category()};
+        logger << "[Error] Failed to receive CANFD frame: " << ret << std::endl;
         logger << "[Error] Error message: " << ec.message() << std::endl;
 
         return false;
     }
-    
+
+
     return true;
 }

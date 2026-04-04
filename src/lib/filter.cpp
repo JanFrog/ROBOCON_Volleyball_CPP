@@ -21,12 +21,13 @@ UKF::UKF(float drag_coefficient, float g, float mass, float sigma_R, float sigma
 }
 
 
+// 计算速度(初速度为正)
 double UKF::_count_vel_posi_vel(double vel, double dt){
 
     return character_vel_ * tan(atan(vel / character_vel_) - traffic_ * dt);
 }
 
-
+// 计算速度(初速度为负)
 double UKF::_count_vel_nega_vel(double vel, double dt){
 
     if ((vel + character_vel_) != 0){
@@ -38,11 +39,14 @@ double UKF::_count_vel_nega_vel(double vel, double dt){
 }
 
 
+// 计算位置(初速度为正)
 double UKF::_count_pos_posi_vel(double vel, double pos, double dt){
 
     return (mass_ / K_) * log(cos(atan(vel / character_vel_) - (traffic_ * dt)) / cos(atan(vel / character_vel_))) + pos;
 }
 
+
+// 计算位置(初速度为负)
 double UKF::_count_pos_nega_vel(double vel, double pos, double dt){
 
     if ((vel + character_vel_) != 0){
@@ -54,6 +58,8 @@ double UKF::_count_pos_nega_vel(double vel, double pos, double dt){
 }
 
 
+
+// 单维度状态转移(带加速度)
 std::tuple<double, double> UKF::_count_transition_with_acc(double vel, double pos, double dt){
 
     double new_vel, new_pos;
@@ -80,6 +86,8 @@ std::tuple<double, double> UKF::_count_transition_with_acc(double vel, double po
 }
 
 
+
+// 单维度状态转移(不带加速度)
 std::tuple<double, double> UKF::_count_transition(double vel, double pos, double dt){
     
     if (vel != 0){
@@ -95,6 +103,8 @@ std::tuple<double, double> UKF::_count_transition(double vel, double pos, double
 }
 
 
+
+// 状态转移函数
 Eigen::MatrixXd UKF::__transition(const Eigen::MatrixXd& previous_state, double dt){  //状态转移函数
 
     Eigen::MatrixXd result(n_, previous_state.cols());
@@ -118,6 +128,8 @@ Eigen::MatrixXd UKF::__transition(const Eigen::MatrixXd& previous_state, double 
 }
 
 
+
+// 生成sigma点
 Eigen::MatrixXd UKF::__sigma_point_generate(const Eigen::VectorXd& point, const Eigen::MatrixXd& S){
     
     Eigen::MatrixXd result(n_, 2 * n_ + 1);
@@ -132,6 +144,9 @@ Eigen::MatrixXd UKF::__sigma_point_generate(const Eigen::VectorXd& point, const 
 }
 
 
+
+
+// 生成Q矩阵
 Eigen::MatrixXd UKF::__make_Q(double dt){
 
     Eigen::MatrixXd Q = Eigen::MatrixXd::Zero(n_, n_);
@@ -153,6 +168,8 @@ Eigen::MatrixXd UKF::__make_Q(double dt){
 
 
 
+
+// 观测函数
 Eigen::MatrixXd UKF::__observe(const Eigen::MatrixXd& points){
     Eigen::MatrixXd points_obs = points.topRows(m_);
     return points_obs;
@@ -167,6 +184,8 @@ Eigen::MatrixXd UKF::__observe(const Eigen::MatrixXd& points){
 
 
 
+
+// 迭代更新
 std::tuple<Eigen::VectorXd, Eigen::MatrixXd> UKF::forward(const Eigen::VectorXd& state_prev, const Eigen::MatrixXd& P_prev, Eigen::VectorXd observed_point, double dt)
 { 
 

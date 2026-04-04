@@ -35,7 +35,8 @@ int frame_counter = 100;
 int detect_count = 0;
 uint64_t last_frame_time = 0;
 bool thread_exit = false;
-float run_seconds = 600;
+float run_seconds = 600;        // 10min
+uint64_t timeout_count = 0;
 
 
 
@@ -94,7 +95,7 @@ void post_process_thread() {
                     locate_result = predictor.locate(std::get<0>(latest.bboxes), std::get<1>(latest.bboxes), std::get<2>(latest.bboxes), std::get<3>(latest.bboxes));
                     std::cout<< "locate_result: "<< locate_result.transpose() << std::endl;
                     
-                    ss_1 << "0 " << locate_result[0] << ' ' << locate_result[1] << ' ' << locate_result[2] << " y_ 0.5";
+                    ss_1 << "0 " << locate_result[0] << ' ' << locate_result[1] << ' ' << locate_result[2] << " y_ 0.01";
                     msg_1 = ss_1.str();
 
                     ssize_t sentBytes_1 = sendto(sockfd, msg_1.c_str(), msg_1.length(), 0, (struct sockaddr*)&destAddr, sizeof(destAddr));
@@ -372,7 +373,7 @@ int main() {
     // 构建pipeline字符串
     std::stringstream ss;
     ss << "v4l2src name=my_camera device=/dev/video" << 0 << " ";
-    ss << "io-mode=2 ";
+    ss << "io-mode=4 ";
     ss << "do-timestamp=false ";
     ss << "! ";
     ss << "image/jpeg,width=" << img_width << ",height=" << img_height << ",framerate=" << frame_rate << "/1 ";

@@ -36,12 +36,12 @@ using namespace nvinfer1;
     const char* INPUT_NAME = "images";      // 输入张量名
     const char* OUTPUT_NAME = "output0";    // 输出张量名
 
-    // Pre process
+    // Preprocess config
     int img_height = 720;
     int img_width = 1280;
     double SCALER = MIN(double(640) / img_width, double(640) / img_height);
 
-    // OD
+    // Object Detection config
     float conf_threshold = 0.8;
 
 
@@ -243,7 +243,9 @@ int main(){
             try
             {
                 engine_model_file.open(tmp_path, std::ios::binary | std::ios::ate);
-                goto Engine_OK; // forgive me ...
+
+                // forgive me ...
+                goto Engine_OK;
             }
             catch(const std::exception& e){
                 std::cerr << "Warning! engine cache broken, trying to rebuild engine ...\n";

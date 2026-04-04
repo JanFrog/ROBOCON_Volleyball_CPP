@@ -37,7 +37,7 @@ std::tuple<float, float> Locator::__count_1d(float pixel_a, float pixel_b, float
     // float beta = (pixel_a * sin(theta_2)) / (pixel_b * sin(theta_1));
     
     float depth = ((radius_ / cos(theta_1)) + (radius_ / cos(theta_2))) * f / pixel_delta;
-    float offset = depth * (pixel_a + (pixel_delta * (1 / (1 + 1 / (pixel_a * sin(theta_2)) / (pixel_b * sin(theta_1)))))) / f;
+    float offset = depth * (pixel_a + (pixel_delta * (1 / ((pixel_b * sin(theta_1)) / (pixel_a * sin(theta_2)) + 1)))) / f;
 
     return std::make_tuple(offset, depth);
 }

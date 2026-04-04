@@ -2,6 +2,7 @@
 #include "predictor.h"
 #include <chrono>
 #include <iostream>
+#include <iomanip>
 #include <thread>
 #include <string>
 #include <sstream>
@@ -107,29 +108,157 @@
 
 
 
+// int main()
+// {
+
+//     // 初始化CAN接口
+//     CAN can("can0", 500000, true, 2000000);
+//     std::stringstream can_logger;
+
+//     if(!can.activate(can_logger))
+//     {
+//         std::cerr << can_logger.str() << std::endl;
+//         return -1;
+//     }
+//     can_logger.str("");
+//     can_logger.clear();
+
+
+
+
+
+
+
+//     // 准备CAN帧
+//     uint8_t* msg_ptr = new uint8_t[64];
+//     uint64_t msg;
+
+//     uint8_t msg_len = 64;
+//     for(int i = 0; i < msg_len; i++){
+//         msg_ptr[i] = i;
+//     }
+//     uint32_t msg_id = 0x310;
+
+
+
+
+
+
+
+//     // 发送CAN帧
+//     int try_count = 0;
+//     int success_count = 0;
+
+//     std::chrono::time_point t1 = std::chrono::high_resolution_clock::now();
+//     for(int i = 0; i < 2000; i++)
+//     {
+//         msg = i;
+
+//         if(try_count >= 100){
+
+
+//             std::chrono::time_point t2 = std::chrono::high_resolution_clock::now();
+
+//             std::cout << "attempt_FPS: " << (float)try_count * 1000000 / std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() << " Hz" << std::endl;
+//             std::cout << "success_rate: " << (float)success_count * 100.0 / try_count << "%" << std::endl;
+
+//             std::cout << "try_count: " << try_count << std::endl;
+//             std::cout << "success_count: " << success_count << std::endl << std::endl;
+
+
+//             try_count = 0;
+//             success_count = 0;
+//             t1 = t2;
+//         }
+
+
+//         can_logger.str("");
+//         can_logger.clear();
+        
+//         if(can.send(msg_id, msg_len, msg_ptr, can_logger))
+//         {
+//             success_count++;
+//         }
+//         else 
+//         {
+//             std::cerr << can_logger.str() << std::endl;
+//             return -1;
+//         }
+//         try_count++;
+
+//         std::this_thread::sleep_for(std::chrono::duration<float>(0.005));
+//     } 
+
+
+
+//     delete[] msg_ptr;
+//     return 0;
+// }
+
+
+
+
+
 int main()
 {
+
+
+
+    // 初始化CAN接口
     CAN can("can0", 500000, false, 2000000);
+
     std::stringstream can_logger;
 
     if(!can.activate(can_logger))
     {
         std::cerr << can_logger.str() << std::endl;
+        return -1;
     }
-
     can_logger.str("");
     can_logger.clear();
 
-    uint8_t msg_len = 8;
-    uint64_t msg = 0x1234567890123456;
-    uint32_t msg_id = 0x123;
-    if(!can.send(msg_id, msg_len, &msg, can_logger))
+
+
+
+
+
+
+
+    canfd_frame receive_frame;
+    int data_len = 0;
+
+    while(!can.receive(receive_frame, can_logger))
     {
-        std::cerr << can_logger.str() << std::endl;
+        std::this_thread::sleep_for(std::chrono::duration<float>(0.1));
+        std::cout << can_logger.str() << std::endl;
+        
+        can_logger.str("");
+        can_logger.clear();
     }
-    else{
-        std::cout << "msg sent successfully" << std::endl;
+
+    data_len = receive_frame.len;
+
+    std::vector<uint8_t> msg_ptr(data_len);
+
+
+
+    // 反转数据字节序
+    for(int i = 0; i < data_len; i++)
+    {
+        msg_ptr[i] = (uint8_t)receive_frame.data[data_len - i - 1];
     }
+
+
+    std::cout << "receive_frame.can_id: " << std::hex << receive_frame.can_id << std::endl;
+    std::cout << "receive_frame.can_dlc: " << std::dec << data_len << std::endl;
+    std::cout << "receive_frame.data: ";
+
+    for(int i = 0; i < data_len; i++)
+    {
+        std::cout << "0x" << std::hex << static_cast<int>(msg_ptr[i]) << ' ';
+    }
+
+    std::cout << std::endl;
 
 
     return 0;
