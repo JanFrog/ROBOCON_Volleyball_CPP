@@ -1,2 +1,0 @@
-/usr/bin/ar qc libMy_STATIC_LIB.a CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o
-/usr/bin/ranlib libMy_STATIC_LIB.a

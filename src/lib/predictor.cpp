@@ -1,41 +1,12 @@
 #include "predictor.h"
 
-Predictor::Predictor(
-    int img_width,              //帧宽(pixels)
-    int img_height,             //帧高(pixels)
-    float radius,               //目标半径(m)
-    Eigen::Matrix3d mtx,        //相机内参矩阵
-    float angel_width,          //弧度制(rad)
-    float angel_height,         //弧度制(rad)
-    Eigen::Matrix3d trans_mtx,
-
-
-    double drag_coefficient,    //阻力系数(由 f = k * v² 定义)
-    double g,                   //重力加速度(m/s²)
-    double mass,                //质量(kg)
-    double sigma_R,             //
-    double sigma_Q,
-
-    double alpha,
-    double beta,
-    double kappa,
-
-
-    int que_size,
-    double target_height,
-    double threshold_height,
-    int timeout_count):
-
-        UKF(drag_coefficient, g, mass, sigma_R, sigma_Q, alpha, beta, kappa),
-        Locator(img_width, img_height, radius, mtx, angel_width, angel_height, trans_mtx){
-
-
-
-    que_size_ = que_size;
-    target_height_ = target_height;
-    threshold_height_ = threshold_height;
+Predictor::Predictor(const Predictor_Params& params): UKF(params.ukf_params), Locator(params.locator_params)
+{
+    que_size_ = params.que_size;
+    target_height_ = params.target_height;
+    threshold_height_ = params.threshold_height;
     sequence_count_ = 0;
-    timeout_count_ = timeout_count;
+    timeout_count_ = params.timeout_count;
 
     P_ = Eigen::MatrixXd::Zero(6, 6);
     state_ = Eigen::VectorXd::Zero(6);
@@ -91,12 +62,12 @@ bool Predictor::__target_count_legacy(const Eigen::VectorXd& state, Eigen::Vecto
 
 
 
-bool Predictor::push_get_legacy(
-    const frame_data& detected_info,        //帧信息
-    Eigen::Vector3d& car_displacement,      //车位移
-    Eigen::VectorXd& result,                //输出
-    Eigen::VectorXd& filtered_point,        //滤波后的点(如果要的话)
-    bool get_filtered_point = false     ){  //获取滤波点开关
+bool Predictor::push_get_legacy(const frame_data_mono& detected_info,
+                                Eigen::Vector3d& car_displacement,
+                                Eigen::VectorXd& result,
+                                Eigen::VectorXd* filtered_point)
+
+{
         
 
     if (!detected_info.detected){
@@ -108,7 +79,11 @@ bool Predictor::push_get_legacy(
 
     float left, right, top, bottom;
     std::tie(left, right, top, bottom, std::ignore) = detected_info.bboxes;
-    Eigen::Vector3d obs_ = (locate(left, right, top, bottom) + car_displacement);
+    Eigen::Vector3d obs_;
+
+    if(!locate(left, right, top, bottom, obs_)){
+        return false;
+    }
 
 
 
@@ -149,8 +124,8 @@ bool Predictor::push_get_legacy(
 
     last_tick = (double)detected_info.timestamp_ns / 1e9;
 
-    if (get_filtered_point){
-        filtered_point = state_;
+    if (filtered_point){
+        *filtered_point = state_;
     }
 
     if (__target_count_legacy(state_, target_tmp_)){
@@ -185,12 +160,11 @@ bool Predictor::push_get_legacy(
 
 
 // 重载
-bool Predictor::push_get_legacy(   
-    const Eigen::Vector3d& obs_point,   //观测点
-    const double dt,                    //delta t
-    Eigen::VectorXd& result,            //结果引用
-    Eigen::VectorXd& filtered_point,    //滤波点引用
-    bool get_filtered_point){
+bool Predictor::push_get_legacy(const Eigen::Vector3d& obs_point,
+                                const double dt,
+                                Eigen::VectorXd& result,
+                                Eigen::VectorXd* filtered_point)
+{
 
     if(obs_point(2) < target_height_){
         if(sequence_count_ > 0) sequence_count_--;
@@ -221,8 +195,8 @@ bool Predictor::push_get_legacy(
         return false;
     }
 
-    if (get_filtered_point){
-        filtered_point = state_;
+    if (filtered_point){
+        *filtered_point = state_;
     }
 
     if (__target_count_legacy(state_, target_tmp_)){

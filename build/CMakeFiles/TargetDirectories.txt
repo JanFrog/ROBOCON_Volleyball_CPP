@@ -1,4 +1,3 @@
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_STATIC_LIB.dir
 /home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_SHARED_LIB.dir
 /home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/Main.dir
 /home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/BAK_Main.dir

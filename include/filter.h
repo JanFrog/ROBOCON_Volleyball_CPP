@@ -9,19 +9,24 @@
 
 
 
+struct UKF_Params{
+    float drag_coefficient = 0.014;
+    float g = 9.8;
+    float mass = 0.125;
+    float sigma_R = 0.1;
+    float sigma_Q = 0.01;
+    float alpha = 0.9;
+    float beta = 3;
+    float kappa = 1.7;
+};
+
+
+
 
 class UKF {
 public:
 
-    UKF(float drag_coefficient = 0.014,
-        float g = 9.8,
-        float mass = 0.125,
-        float sigma_R = 0.1,
-        float sigma_Q = 0.01,
-        float alpha = 0.9,
-        float beta = 3,
-        float kappa = 1.7);
-
+    UKF(const UKF_Params& params);
     std::tuple<Eigen::VectorXd, Eigen::MatrixXd> forward(const Eigen::VectorXd& state_prev, const Eigen::MatrixXd& P_prev, Eigen::VectorXd observed_point, double dt);
 
 

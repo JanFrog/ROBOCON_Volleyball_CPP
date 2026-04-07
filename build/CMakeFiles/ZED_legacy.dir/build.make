@@ -181,7 +181,6 @@ ZED_legacy: /usr/lib/aarch64-linux-gnu/libglib-2.0.so
 ZED_legacy: /usr/local/zed/lib/libsl_zed.so
 ZED_legacy: /usr/lib/aarch64-linux-gnu/libopenblas.so
 ZED_legacy: /usr/lib/aarch64-linux-gnu/libusb-1.0.so
-ZED_legacy: libMy_STATIC_LIB.a
 ZED_legacy: CMakeFiles/ZED_legacy.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable ZED_legacy"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ZED_legacy.dir/link.txt --verbose=$(VERBOSE)

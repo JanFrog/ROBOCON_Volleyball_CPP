@@ -108,11 +108,14 @@
 
 
 
+
+
+
 // int main()
 // {
 
 //     // 初始化CAN接口
-//     CAN can("can0", 500000, true, 2000000);
+//     CAN can("can0", 1000000, true, 1000000);
 //     std::stringstream can_logger;
 
 //     if(!can.activate(can_logger))
@@ -130,14 +133,24 @@
 
 
 //     // 准备CAN帧
-//     uint8_t* msg_ptr = new uint8_t[64];
-//     uint64_t msg;
+    
+//     uint64_t msg = 0x0123456789ABCDEF;
 
-//     uint8_t msg_len = 64;
-//     for(int i = 0; i < msg_len; i++){
-//         msg_ptr[i] = i;
-//     }
-//     uint32_t msg_id = 0x310;
+//     uint8_t* msg_ptr = new uint8_t[8];
+//     uint16_t V_x = 0xcdef, V_y = 0x89ab, Omega = 0x4567, Other = 0x0123;
+
+
+//     memcpy(msg_ptr, &V_x, sizeof(uint16_t));
+//     memcpy(msg_ptr + 2, &V_y, sizeof(uint16_t));
+//     memcpy(msg_ptr + 4, &Omega, sizeof(uint16_t));
+//     memcpy(msg_ptr + 6, &Other, sizeof(uint16_t));
+
+
+//     uint8_t msg_len = 8;
+//     // for(int i = 0; i < msg_len; i++){
+//     //     msg_ptr[i] = i;
+//     // }
+//     uint32_t msg_id = 0x01;
 
 
 
@@ -148,11 +161,20 @@
 //     // 发送CAN帧
 //     int try_count = 0;
 //     int success_count = 0;
-
+//     //msg = *((uint64_t*)msg_ptr);
 //     std::chrono::time_point t1 = std::chrono::high_resolution_clock::now();
+
+
 //     for(int i = 0; i < 2000; i++)
 //     {
-//         msg = i;
+//         // msg = i;
+
+
+
+//         // std::cout << "msg: " << std::hex << msg << std::endl;
+//         // std::cout << "msg_ptr: " << std::hex << *(uint64_t*)msg_ptr << std::endl;
+
+
 
 //         if(try_count >= 100){
 
@@ -186,7 +208,7 @@
 //         }
 //         try_count++;
 
-//         std::this_thread::sleep_for(std::chrono::duration<float>(0.005));
+//         std::this_thread::sleep_for(std::chrono::duration<float>(0.01));
 //     } 
 
 
@@ -205,7 +227,7 @@ int main()
 
 
     // 初始化CAN接口
-    CAN can("can0", 500000, false, 2000000);
+    CAN can("can0", 1000000, false, 10000000);
 
     std::stringstream can_logger;
 
@@ -224,42 +246,51 @@ int main()
 
 
 
-    canfd_frame receive_frame;
+    can_frame receive_frame;
     int data_len = 0;
 
-    while(!can.receive(receive_frame, can_logger))
+    while(true)
     {
         std::this_thread::sleep_for(std::chrono::duration<float>(0.1));
         std::cout << can_logger.str() << std::endl;
         
         can_logger.str("");
         can_logger.clear();
+        
+        if(can.receive(receive_frame, can_logger))
+        {
+            data_len = receive_frame.can_dlc;
+
+            std::vector<uint8_t> msg_ptr(data_len);
+
+
+
+            // 反转数据字节序
+            for(int i = 0; i < data_len; i++)
+            {
+                // msg_ptr[i] = (uint8_t)receive_frame.data[data_len - i - 1];
+                // msg_ptr[i] = (uint8_t)receive_frame.data[i];
+
+            }
+
+
+            std::cout << "receive_frame.can_id: " << std::hex << receive_frame.can_id << std::endl;
+            std::cout << "receive_frame.can_dlc: " << std::dec << data_len << std::endl;
+            std::cout << "receive_frame.data: ";
+
+            // std::cout << *static_cast<uint64_t*>(&msg_ptr);
+
+            for(int i = 0; i < data_len; i++)
+            {
+                std::cout << "0x" << std::hex << static_cast<int>(msg_ptr[i]) << ' ';
+            }
+
+            std::cout << std::endl;
+        }
+
     }
 
-    data_len = receive_frame.len;
 
-    std::vector<uint8_t> msg_ptr(data_len);
-
-
-
-    // 反转数据字节序
-    for(int i = 0; i < data_len; i++)
-    {
-        msg_ptr[i] = (uint8_t)receive_frame.data[data_len - i - 1];
-    }
-
-
-    std::cout << "receive_frame.can_id: " << std::hex << receive_frame.can_id << std::endl;
-    std::cout << "receive_frame.can_dlc: " << std::dec << data_len << std::endl;
-    std::cout << "receive_frame.data: ";
-
-    for(int i = 0; i < data_len; i++)
-    {
-        std::cout << "0x" << std::hex << static_cast<int>(msg_ptr[i]) << ' ';
-    }
-
-    std::cout << std::endl;
-
-
+    
     return 0;
 }

@@ -332,10 +332,12 @@ bool CAN::send(uint32_t id, uint8_t data_len, void* data, std::stringstream& log
         this->Frame.can_dlc = data_len;
 
 
-        for(int i = 0; i < data_len; i++)
-        {
-            this->Frame.data[data_len - i - 1] = *((uint8_t*)data + i);
-        }
+        // for(int i = 0; i < data_len; i++)
+        // {
+        //     this->Frame.data[data_len - i - 1] = *((uint8_t*)data + i);
+        // }
+
+        memcpy(this->Frame.data, data, data_len);
 
 
 
@@ -362,12 +364,12 @@ bool CAN::send(uint32_t id, uint8_t data_len, void* data, std::stringstream& log
 
 
 
-        for(int i = 0; i < data_len; i++)
-        {
-            this->Frame_FD.data[data_len - i - 1] = *((uint8_t*)data + i);
-        }
+        // for(int i = 0; i < data_len; i++)
+        // {
+        //     this->Frame_FD.data[data_len - i - 1] = *((uint8_t*)data + i);
+        // }
 
-
+        memcpy(this->Frame_FD.data, data, data_len);
 
 
         size_t ret = write(this->sock, &this->Frame_FD, CANFD_MTU);

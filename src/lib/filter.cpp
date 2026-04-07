@@ -3,21 +3,21 @@
 
 
 
-UKF::UKF(float drag_coefficient, float g, float mass, float sigma_R, float sigma_Q, float alpha, float beta, float kappa)
+UKF::UKF(const UKF_Params& params)
 {
-    K_              = drag_coefficient;
-    g_              = g;
-    mass_           = mass;
-    sigma_Q_        = sigma_Q;
-    R_              = Eigen::MatrixXd::Identity(m_, m_) * (sigma_R * sigma_R);
+    K_              = params.drag_coefficient;
+    g_              = params.g;
+    mass_           = params.mass;
+    sigma_Q_        = params.sigma_Q;
+    R_              = Eigen::MatrixXd::Identity(m_, m_) * (params.sigma_R * params.sigma_R);
     character_vel_  = sqrt(mass_ * g_ / K_);
     traffic_        = sqrt(g_ * K_ / mass_);
 
-    lambda_         = alpha * alpha * (n_ + kappa) - n_;
+    lambda_         = params.alpha * params.alpha * (n_ + params.kappa) - n_;
     Weight_M        = Eigen::VectorXd::Constant(2 * n_ + 1, 0.5 / (n_ + lambda_));
     Weight_M(0)     = lambda_ / (n_ + lambda_);
     Weight_C        = Weight_M;
-    Weight_C(0)    += (1 - alpha * alpha + beta);
+    Weight_C(0)    += (1 - params.alpha * params.alpha + params.beta);
 }
 
 

@@ -1,21 +1,26 @@
 #pragma once
 
 #include <opencv2/opencv.hpp>
-#include <deque>
+#include <Eigen/Dense>
 
 
 
 
-enum frame_type{
-    frame_type_0 = 0,   // mono cam
-    frame_type_1 = 1    // zed
+
+struct frame_data_mono{
+    uint64_t timestamp_ns;      // 帧的时间戳（纳秒）
+    cv::Mat image;              // 帧的图像数据
+    bool detected = false;      // 是否检测到目标
+    std::tuple<float, float, float, float, float> bboxes; // 检测框列表（left, top, width, height, confidence）x-positive = right y-positive = down                                                                                           
 };
 
 
-struct frame_data{
-    frame_type type;
-    uint64_t timestamp_ns; // 帧的时间戳（纳秒）
-    cv::Mat image;                      // 帧的图像数据
+
+
+struct frame_data_stereo{
+    uint64_t timestamp_ns;  // 帧的时间戳（纳秒）
+    cv::Mat left_image;     // 帧的左图像数据
+    bool detected = false;  // 是否检测到目标
     std::tuple<float, float, float, float, float> bboxes; // 检测框列表（left, top, width, height, confidence）x-positive = right y-positive = down
-    bool detected = false;                                                                                              
+    Eigen::Vector3d coordinate; // 目标坐标（3d）
 };

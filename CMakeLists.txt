@@ -157,29 +157,23 @@ message(STATUS "ProjectDeps INTERFACE_INCLUDE_DIRECTORIES: ${inc_dirs}")
 
 
 # --- 项目内部库 ---
-add_library(My_STATIC_LIB STATIC
-    src/lib/exposure_recorder.cpp
-    # ZED SDK
-)
-
-target_include_directories(My_STATIC_LIB PUBLIC
-    ${CMAKE_CURRENT_SOURCE_DIR}/include
-    ${OpenCV_INCLUDE_DIRS}
-    ${EIGEN3_INCLUDE_DIR}
-)
-
 add_library(My_SHARED_LIB SHARED 
     src/lib/locator_2d.cpp
-    src/lib/coordinator.cpp
     src/lib/filter.cpp
     src/lib/points_generator.cpp
     src/lib/predictor.cpp
     src/lib/CAN.cpp
 )
 
+# --- 公共接口库 ---
+target_include_directories(My_SHARED_LIB PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${OpenCV_INCLUDE_DIRS}
+    ${EIGEN3_INCLUDE_DIR}
+)
 
 # 共享库自动继承静态库的 PUBLIC 接口
-target_link_libraries(My_SHARED_LIB PUBLIC My_STATIC_LIB)
+target_link_libraries(My_SHARED_LIB PUBLIC ProjectDeps)
 
 
 

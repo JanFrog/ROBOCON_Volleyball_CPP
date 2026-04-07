@@ -117,19 +117,6 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named My_STATIC_LIB
-
-# Build rule for target.
-My_STATIC_LIB: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 My_STATIC_LIB
-.PHONY : My_STATIC_LIB
-
-# fast build rule for target.
-My_STATIC_LIB/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_STATIC_LIB.dir/build.make CMakeFiles/My_STATIC_LIB.dir/build
-.PHONY : My_STATIC_LIB/fast
-
-#=============================================================================
 # Target rules for targets named My_SHARED_LIB
 
 # Build rule for target.
@@ -230,54 +217,6 @@ src/lib/CAN.s: src/lib/CAN.cpp.s
 src/lib/CAN.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_SHARED_LIB.dir/build.make CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.s
 .PHONY : src/lib/CAN.cpp.s
-
-src/lib/coordinator.o: src/lib/coordinator.cpp.o
-.PHONY : src/lib/coordinator.o
-
-# target to build an object file
-src/lib/coordinator.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_SHARED_LIB.dir/build.make CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o
-.PHONY : src/lib/coordinator.cpp.o
-
-src/lib/coordinator.i: src/lib/coordinator.cpp.i
-.PHONY : src/lib/coordinator.i
-
-# target to preprocess a source file
-src/lib/coordinator.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_SHARED_LIB.dir/build.make CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i
-.PHONY : src/lib/coordinator.cpp.i
-
-src/lib/coordinator.s: src/lib/coordinator.cpp.s
-.PHONY : src/lib/coordinator.s
-
-# target to generate assembly for a file
-src/lib/coordinator.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_SHARED_LIB.dir/build.make CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s
-.PHONY : src/lib/coordinator.cpp.s
-
-src/lib/exposure_recorder.o: src/lib/exposure_recorder.cpp.o
-.PHONY : src/lib/exposure_recorder.o
-
-# target to build an object file
-src/lib/exposure_recorder.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_STATIC_LIB.dir/build.make CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.o
-.PHONY : src/lib/exposure_recorder.cpp.o
-
-src/lib/exposure_recorder.i: src/lib/exposure_recorder.cpp.i
-.PHONY : src/lib/exposure_recorder.i
-
-# target to preprocess a source file
-src/lib/exposure_recorder.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_STATIC_LIB.dir/build.make CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.i
-.PHONY : src/lib/exposure_recorder.cpp.i
-
-src/lib/exposure_recorder.s: src/lib/exposure_recorder.cpp.s
-.PHONY : src/lib/exposure_recorder.s
-
-# target to generate assembly for a file
-src/lib/exposure_recorder.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/My_STATIC_LIB.dir/build.make CMakeFiles/My_STATIC_LIB.dir/src/lib/exposure_recorder.cpp.s
-.PHONY : src/lib/exposure_recorder.cpp.s
 
 src/lib/filter.o: src/lib/filter.cpp.o
 .PHONY : src/lib/filter.o
@@ -507,18 +446,11 @@ help:
 	@echo "... Main"
 	@echo "... Module_Test"
 	@echo "... My_SHARED_LIB"
-	@echo "... My_STATIC_LIB"
 	@echo "... Test"
 	@echo "... ZED_legacy"
 	@echo "... src/lib/CAN.o"
 	@echo "... src/lib/CAN.i"
 	@echo "... src/lib/CAN.s"
-	@echo "... src/lib/coordinator.o"
-	@echo "... src/lib/coordinator.i"
-	@echo "... src/lib/coordinator.s"
-	@echo "... src/lib/exposure_recorder.o"
-	@echo "... src/lib/exposure_recorder.i"
-	@echo "... src/lib/exposure_recorder.s"
 	@echo "... src/lib/filter.o"
 	@echo "... src/lib/filter.i"
 	@echo "... src/lib/filter.s"

@@ -3,18 +3,21 @@
 
 
 
-Locator::Locator(int img_width, int img_height, float radius, Eigen::Matrix3d mtx, float angel_width, float angel_height, Eigen::Matrix3d trans_mtx):
-    img_width_(img_width), img_height_(img_height), radius_(radius)
-{
-    trans_mtx_ = trans_mtx;
 
-    if (mtx != Eigen::Matrix3d::Zero()) {
-        f1 = mtx(0, 0);
-        f2 = mtx(1, 1);
+
+Locator::Locator(const Locator_Params& params):
+    img_width_(params.img_width), img_height_(params.img_height), radius_(params.radius), box_noise_(params.box_noise)
+{
+
+    trans_mtx_ = params.trans_mtx;
+    
+    if (params.mtx != Eigen::Matrix3d::Zero()) {
+        f1 = params.mtx(0, 0);
+        f2 = params.mtx(1, 1);
     }
-    else if (angel_width > 0 && angel_height > 0) {
-        f1 = (img_width_ / 2) / tan(angel_width / 2);
-        f2 = (img_height_ / 2) / tan(angel_height / 2);
+    else if (params.angel_width > 0 && params.angel_height > 0) {
+        f1 = (img_width_ / 2) / tan(params.angel_width / 2);
+        f2 = (img_height_ / 2) / tan(params.angel_height / 2);  
     }
     else {
         std::cerr << "初始化失败：请提供有效的相机内参矩阵或视场角参数" << std::endl;
@@ -27,20 +30,47 @@ Locator::Locator(int img_width, int img_height, float radius, Eigen::Matrix3d mt
 
 
 
-std::tuple<float, float> Locator::__count_1d(float pixel_a, float pixel_b, float f){
-
-    float pixel_delta = pixel_b - pixel_a;
-
-    float theta_1 = atan(pixel_a / f);
-    float theta_2 = atan(pixel_b / f);
-
-    // float beta = (pixel_a * sin(theta_2)) / (pixel_b * sin(theta_1));
+std::tuple<double, double, double> Locator::__count_1d(double pixel_a, double pixel_b, double f)
+{
     
-    float depth = ((radius_ / cos(theta_1)) + (radius_ / cos(theta_2))) * f / pixel_delta;
-    float offset = depth * (pixel_a + (pixel_delta * (1 / ((pixel_b * sin(theta_1)) / (pixel_a * sin(theta_2)) + 1)))) / f;
+    // // 老流程 (更直观)
 
-    return std::make_tuple(offset, depth);
+    // float pixel_delta = pixel_b - pixel_a;
+
+    // float theta_1 = atan(pixel_a / f);
+    // float theta_2 = atan(pixel_b / f);
+
+    // // float beta = (pixel_a * sin(theta_2)) / (pixel_b * sin(theta_1));
+    
+    // float depth = ((radius_ / cos(theta_1)) + (radius_ / cos(theta_2))) * f / pixel_delta;
+    // // float depth = (sqrt((pixel_a * pixel_a) + (f * f)) + sqrt((pixel_b * pixel_b) + (f * f))) * radius_ / pixel_delta;
+
+    // float offset = depth * (pixel_a + (pixel_delta * (1 / ((pixel_b * sin(theta_1)) / (pixel_a * sin(theta_2)) + 1)))) / f;
+    // double depth_tolerance = 10000;
+
+
+
+
+    // 新流程 (性能更好, 优化掉了超越函数)
+
+    double pixel_delta = pixel_b - pixel_a;
+
+    double sqrt_af = sqrt((pixel_a * pixel_a) + (f * f));
+    double sqrt_bf = sqrt((pixel_b * pixel_b) + (f * f));
+
+
+    double depth = (sqrt_af + sqrt_bf) * radius_ / pixel_delta;
+
+    double offset = ((pixel_b * sqrt_af) + (pixel_a * sqrt_bf)) * radius_ / pixel_delta / f;
+
+    double depth_tolerance = box_noise_ * (radius_ / pixel_delta) * \
+        (std::abs((((sqrt_af + sqrt_bf) / pixel_delta)) + (pixel_a / sqrt_af)) + std::abs(-((sqrt_af + sqrt_bf) / pixel_delta) + (pixel_b / sqrt_bf)));
+
+    return std::make_tuple(offset, depth, depth_tolerance);
 }
+
+
+
 
 
 /*
@@ -48,27 +78,39 @@ std::tuple<float, float> Locator::__count_1d(float pixel_a, float pixel_b, float
     原点:   左上角
     width:  正方向→
     height: 正方向↓   */
-Eigen::Vector3d Locator::locate(float left, float top, float width, float height){
+bool Locator::locate(double left, double top, double width, double height, Eigen::Vector3d& result){
 
     /*
     坐标系转换:
         原点:   正中心
         width:  正方向←
         height: 正方向↑   */
-    float pixel_w_b = (img_width_ / 2) - left;
-    float pixel_w_a = pixel_w_b - width;
-    float pixel_h_b = (img_height_ / 2) - top;
-    float pixel_h_a = pixel_h_b - height;
+    double pixel_w_b = (img_width_ / 2) - left;
+    double pixel_w_a = pixel_w_b - width;
+    double pixel_h_b = (img_height_ / 2) - top;
+    double pixel_h_a = pixel_h_b - height;
     
 
     // 分别计算水平和垂直方向的偏移和深度
-    auto [offset_y, depth_1] = __count_1d(pixel_w_a, pixel_w_b, f1);
-    auto [offset_z, depth_2] = __count_1d(pixel_h_a, pixel_h_b, f2);
+    auto [offset_y, depth_1, tolerance_1] = __count_1d(pixel_w_a, pixel_w_b, f1);
+    auto [offset_z, depth_2, tolerance_2] = __count_1d(pixel_h_a, pixel_h_b, f2);
 
 
+    
+    if((img_width_ / 2) - std::max(std::abs(pixel_w_a), std::abs(pixel_w_b)) <= box_noise_ || (img_height_ / 2) - std::max(std::abs(pixel_h_a), std::abs(pixel_h_b)) <= box_noise_)
+    {
+        if(std::abs((depth_1 - depth_2)) > (tolerance_1 > tolerance_2 ? tolerance_2 : tolerance_1))
+        {
+            std::cout<< "\nLocator: depth tolerance not met, tolerance: " << (tolerance_1 > tolerance_2 ? tolerance_2 : tolerance_1) << "\ndepth_difference: " << std::abs(depth_1 - depth_2) << std::endl;
+            return false;
+        }
+    }
 
-    Eigen::Vector3d result(std::min(depth_1, depth_2), offset_y, offset_z);
 
-    return (trans_mtx_ * result);
+    result.x() = std::min(depth_1, depth_2);
+    result.y() = offset_y;
+    result.z() = offset_z;
+
+    return true;
 
 }

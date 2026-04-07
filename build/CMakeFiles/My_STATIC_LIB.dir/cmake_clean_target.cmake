@@ -1,3 +1,0 @@
-file(REMOVE_RECURSE
-  "libMy_STATIC_LIB.a"
-)

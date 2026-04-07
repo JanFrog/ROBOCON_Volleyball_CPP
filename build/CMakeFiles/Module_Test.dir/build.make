@@ -181,7 +181,6 @@ Module_Test: /usr/lib/aarch64-linux-gnu/libglib-2.0.so
 Module_Test: /usr/local/zed/lib/libsl_zed.so
 Module_Test: /usr/lib/aarch64-linux-gnu/libopenblas.so
 Module_Test: /usr/lib/aarch64-linux-gnu/libusb-1.0.so
-Module_Test: libMy_STATIC_LIB.a
 Module_Test: CMakeFiles/Module_Test.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX executable Module_Test"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Module_Test.dir/link.txt --verbose=$(VERBOSE)

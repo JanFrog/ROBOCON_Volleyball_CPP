@@ -86,24 +86,10 @@ CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/locator_2d.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.s
 
-CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
-CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp
-CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp
-
-CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp > CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.i
-
-CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/nvidia/Projects/Volleyball_cpp/src/lib/coordinator.cpp -o CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.s
-
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/filter.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.i: cmake_force
@@ -117,7 +103,7 @@ CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.s: cmake_force
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/points_generator.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.i: cmake_force
@@ -131,7 +117,7 @@ CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.s: cmake_force
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/predictor.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.i: cmake_force
@@ -145,7 +131,7 @@ CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.s: cmake_force
 CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o: CMakeFiles/My_SHARED_LIB.dir/flags.make
 CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o: /home/nvidia/Projects/Volleyball_cpp/src/lib/CAN.cpp
 CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o: CMakeFiles/My_SHARED_LIB.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o -MF CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o.d -o CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o -c /home/nvidia/Projects/Volleyball_cpp/src/lib/CAN.cpp
 
 CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.i: cmake_force
@@ -159,7 +145,6 @@ CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.s: cmake_force
 # Object files for target My_SHARED_LIB
 My_SHARED_LIB_OBJECTS = \
 "CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o" \
-"CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o" \
 "CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o" \
 "CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o" \
 "CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o" \
@@ -169,15 +154,98 @@ My_SHARED_LIB_OBJECTS = \
 My_SHARED_LIB_EXTERNAL_OBJECTS =
 
 libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/src/lib/locator_2d.cpp.o
-libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/src/lib/coordinator.cpp.o
 libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/src/lib/filter.cpp.o
 libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/src/lib/points_generator.cpp.o
 libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/src/lib/predictor.cpp.o
 libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/src/lib/CAN.cpp.o
 libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/build.make
-libMy_SHARED_LIB.so: libMy_STATIC_LIB.a
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libsocketcan.so
+libMy_SHARED_LIB.so: /usr/local/cuda-11.4/targets/aarch64-linux/lib/libcudart.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/librt.so
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_gapi.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_stitching.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_alphamat.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_aruco.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_bgsegm.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_bioinspired.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_ccalib.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudabgsegm.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudafeatures2d.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudaobjdetect.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudastereo.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_dnn_objdetect.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_dnn_superres.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_dpm.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_face.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_freetype.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_fuzzy.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_hdf.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_hfs.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_img_hash.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_intensity_transform.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_line_descriptor.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_mcc.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_quality.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_rapid.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_reg.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_rgbd.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_saliency.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_sfm.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_signal.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_stereo.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_structured_light.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_phase_unwrapping.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_superres.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudacodec.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_surface_matching.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_tracking.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_highgui.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_datasets.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_plot.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_text.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_videostab.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_videoio.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudaoptflow.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudalegacy.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudawarping.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_optflow.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_wechat_qrcode.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_xfeatures2d.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_ml.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_shape.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_ximgproc.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_video.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_xobjdetect.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_imgcodecs.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_objdetect.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_calib3d.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_dnn.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_features2d.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_flann.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_xphoto.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_photo.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudaimgproc.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudafilters.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_imgproc.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudaarithm.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_core.so.4.12.0
+libMy_SHARED_LIB.so: /usr/local/lib/libopencv_cudev.so.4.12.0
+libMy_SHARED_LIB.so: /opt/nvidia/deepstream/deepstream-6.3/lib/libnvdsgst_helper.so
+libMy_SHARED_LIB.so: /opt/nvidia/deepstream/deepstream-6.3/lib/libnvds_meta.so
+libMy_SHARED_LIB.so: /opt/nvidia/deepstream/deepstream-6.3/lib/libnvdsgst_meta.so
+libMy_SHARED_LIB.so: /opt/nvidia/deepstream/deepstream-6.3/lib/libnvbufsurface.so
+libMy_SHARED_LIB.so: /opt/nvidia/deepstream/deepstream-6.3/lib/libnvds_infer.so
+libMy_SHARED_LIB.so: /opt/nvidia/deepstream/deepstream-6.3/lib/libnvds_utils.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libgstvideo-1.0.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libgstbase-1.0.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libgstreamer-1.0.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libgobject-2.0.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libglib-2.0.so
+libMy_SHARED_LIB.so: /usr/local/zed/lib/libsl_zed.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libopenblas.so
+libMy_SHARED_LIB.so: /usr/lib/aarch64-linux-gnu/libusb-1.0.so
 libMy_SHARED_LIB.so: CMakeFiles/My_SHARED_LIB.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking CXX shared library libMy_SHARED_LIB.so"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX shared library libMy_SHARED_LIB.so"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/My_SHARED_LIB.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
