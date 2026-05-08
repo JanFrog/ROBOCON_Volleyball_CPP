@@ -1,9 +1,7 @@
 
 cmake_minimum_required(VERSION 3.16)
 
-# # 消除 FindCUDA 和 exec_program 废弃警告
-# cmake_policy(SET CMP0146 NEW)
-# cmake_policy(SET CMP0153 NEW)
+
 
 project(Volleyball_cpp LANGUAGES CXX CUDA)
 
@@ -26,12 +24,7 @@ endif()
 
 # Jetson Orin NX: Ampere 架构 (SM 87)
 set(CMAKE_CUDA_ARCHITECTURES "87" CACHE STRING "CUDA architecture for Jetson Orin NX (Ampere)")
-
-
-
-
-
-
+add_compile_options(-O3 -march=armv8.2-a+simd -ftree-vectorize)
 
 
 
@@ -153,6 +146,44 @@ message(STATUS "ProjectDeps INTERFACE_INCLUDE_DIRECTORIES: ${inc_dirs}")
 
 
 
+# --- 不含 OpenCV 的依赖库（用于 Make_data.cpp）---
+add_library(ProjectDeps_NoCV INTERFACE)
+
+target_include_directories(ProjectDeps_NoCV INTERFACE
+    ${EIGEN3_INCLUDE_DIR}
+    ${CMAKE_CUDA_TOOLKIT_INCLUDE_DIRECTORIES}
+    ${TensorRT_INCLUDE_DIR}
+    ${DEEPSTREAM_INCLUDE_DIR}
+    ${GSTREAMER_INCLUDE_DIRS}
+    ${CMAKE_CURRENT_SOURCE_DIR}/include
+    ${ZED_INCLUDE_DIRS}
+)
+
+target_link_libraries(ProjectDeps_NoCV INTERFACE
+    ${SOCKETCAN_LIB}
+    nvinfer
+    nvonnxparser
+    CUDA::cudart
+    ${NVDSGST_HELPER_LIB}
+    ${NVDS_META_LIB}
+    ${NVDSGST_META_LIB}
+    ${NVBUFSURFACE_LIB}
+    ${NVDS_INFER_LIB}
+    ${NVDS_UTILS_LIB}
+    PkgConfig::GSTREAMER
+    glib-2.0
+    gobject-2.0
+    pthread
+    ${ZED_LIBRARIES}
+)
+####################################
+
+
+
+
+
+
+
 
 
 
@@ -163,6 +194,12 @@ add_library(My_SHARED_LIB SHARED
     src/lib/points_generator.cpp
     src/lib/predictor.cpp
     src/lib/CAN.cpp
+    src/lib/dataLoader.cpp
+    src/lib/IMU_I2C.cpp
+    src/lib/Chassis_pos.cpp
+    src/lib/Message_syncer.cpp
+    src/lib/How_2_move.cpp
+    src/lib/RLSCell.cpp
 )
 
 # --- 公共接口库 ---
@@ -174,7 +211,7 @@ target_include_directories(My_SHARED_LIB PUBLIC
 
 # 共享库自动继承静态库的 PUBLIC 接口
 target_link_libraries(My_SHARED_LIB PUBLIC ProjectDeps)
-
+target_link_libraries(My_SHARED_LIB PRIVATE i2c)
 
 
 
@@ -189,18 +226,30 @@ target_link_libraries(My_SHARED_LIB PUBLIC ProjectDeps)
 add_executable(Main src/main.cpp)
 target_link_libraries(Main PRIVATE ProjectDeps My_SHARED_LIB)
 
-add_executable(BAK_Main src/main_bak.cpp)
-target_link_libraries(BAK_Main PRIVATE ProjectDeps My_SHARED_LIB)
-
 add_executable(Test src/test.cpp)
 target_link_libraries(Test PRIVATE ProjectDeps My_SHARED_LIB)
 
 add_executable(Module_Test src/module_test.cpp)
 target_link_libraries(Module_Test PRIVATE ProjectDeps My_SHARED_LIB)
 
+add_executable(Load_data src/Load_data.cpp)
+target_link_libraries(Load_data PRIVATE ProjectDeps My_SHARED_LIB)
+
+add_executable(dataCutter src/dataCutter.cpp)
+target_link_libraries(dataCutter PRIVATE ProjectDeps My_SHARED_LIB)
+
 add_executable(ZED_legacy src/zed_legacy_api.cpp)  
 target_link_libraries(ZED_legacy PRIVATE ProjectDeps My_SHARED_LIB)
-target_include_directories(ZED_legacy PRIVATE ${ZED_INCLUDE_DIRS})   # 新增这一行
+target_include_directories(ZED_legacy PRIVATE ${ZED_INCLUDE_DIRS})
+
+add_executable(ZED_gstreamer src/zed_gst.cpp)
+target_link_libraries(ZED_gstreamer PRIVATE ProjectDeps My_SHARED_LIB)
+
+add_executable(Wdata src/Make_data_source.cpp)
+target_link_libraries(Wdata PRIVATE ProjectDeps_NoCV)
+
+
+
 
 
 # # --- 构建输出目录优化 (可选) ---

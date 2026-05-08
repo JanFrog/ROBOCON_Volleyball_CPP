@@ -4,7 +4,6 @@
 #include <atomic>
 #include <deque>
 #include <string>
-#include <opencv2/opencv.hpp>
 #include <Eigen/Dense>
 #include <tuple>
 
@@ -125,6 +124,12 @@ template<typename T>
 bool ExposureRecorder<T>::getLatestExposureData(T& latest) const {
     std::shared_lock<std::shared_mutex> lock(history_mutex_);
     if (!exposure_history_.empty()) {
+
+        if(latest.timestamp_ns == exposure_history_.back().timestamp_ns)
+        {
+            return true;
+        }
+
         latest = exposure_history_.back();
         return true;
     }

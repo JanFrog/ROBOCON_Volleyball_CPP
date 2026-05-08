@@ -66,6 +66,9 @@ CAN::~CAN()
 
 bool CAN::activate(std::stringstream& logger)    // 激活 CAN 接口
 {
+    logger.str("");
+    logger.clear();
+
 
     // 检查 root 权限
     if (geteuid() != 0) {
@@ -247,6 +250,10 @@ bool CAN::activate(std::stringstream& logger)    // 激活 CAN 接口
 // 取消激活CAN接口
 bool CAN::deactivate(std::stringstream& logger)
 {
+
+    logger.str("");
+    logger.clear();
+
     if (this->sock >= 0) {
         
         close(this->sock);
@@ -300,6 +307,10 @@ bool CAN::set_parameters(const CAN_PARAMETERS& params, std::stringstream& logger
 // 发送CAN帧
 bool CAN::send(uint32_t id, uint8_t data_len, void* data, std::stringstream& logger)
 {
+
+    logger.str("");
+    logger.clear();
+
     // 检查接口状态
     if (!this->ACTIVATED)
     {
@@ -332,12 +343,10 @@ bool CAN::send(uint32_t id, uint8_t data_len, void* data, std::stringstream& log
         this->Frame.can_dlc = data_len;
 
 
-        // for(int i = 0; i < data_len; i++)
-        // {
-        //     this->Frame.data[data_len - i - 1] = *((uint8_t*)data + i);
-        // }
-
-        memcpy(this->Frame.data, data, data_len);
+        for(int i = 0; i < data_len; i++)
+        {
+            this->Frame.data[data_len - i - 1] = *((uint8_t*)data + i);
+        }
 
 
 
@@ -364,12 +373,10 @@ bool CAN::send(uint32_t id, uint8_t data_len, void* data, std::stringstream& log
 
 
 
-        // for(int i = 0; i < data_len; i++)
-        // {
-        //     this->Frame_FD.data[data_len - i - 1] = *((uint8_t*)data + i);
-        // }
-
-        memcpy(this->Frame_FD.data, data, data_len);
+        for(int i = 0; i < data_len; i++)
+        {
+            this->Frame_FD.data[data_len - i - 1] = *((uint8_t*)data + i);
+        }
 
 
         size_t ret = write(this->sock, &this->Frame_FD, CANFD_MTU);
@@ -390,6 +397,10 @@ bool CAN::send(uint32_t id, uint8_t data_len, void* data, std::stringstream& log
 // 接收CAN帧
 bool CAN::receive(can_frame& frame, std::stringstream& logger)
 {
+
+    logger.str("");
+    logger.clear();
+
     // 检查接口状态
     if (!this->ACTIVATED) {
         logger << "[Error] CAN Interface is not activated !" << std::endl;
@@ -428,6 +439,10 @@ bool CAN::receive(can_frame& frame, std::stringstream& logger)
 // 接收CANFD帧
 bool CAN::receive(canfd_frame& frame, std::stringstream& logger)
 {
+
+    logger.str("");
+    logger.clear();
+
     // 检查接口状态
     if (!this->ACTIVATED) {
         logger << "[Error] CAN Interface is not activated !" << std::endl;
@@ -444,7 +459,7 @@ bool CAN::receive(canfd_frame& frame, std::stringstream& logger)
     ssize_t ret = read(this->sock, &frame, CANFD_MTU);
     if (ret == -1) {
         if (errno == EAGAIN || errno == EWOULDBLOCK) {
-            logger << "[Info]  no CAN frame received" << std::endl;
+            logger << "[Info]  no CANFD frame received" << std::endl;
             // 无数据可用
             return false;
         }

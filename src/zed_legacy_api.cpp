@@ -432,7 +432,7 @@ int main(){
 
     sl::Mat left_BGR;   // 左目图像
     sl::Mat depth_map;  // 深度图像
-    cv::Mat cv_img;   // cv图像(8UC3)
+    cv::Mat cv_img;     // cv图像(8UC3)
     cv::Mat resized_img;
 
 

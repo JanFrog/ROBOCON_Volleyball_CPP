@@ -14,11 +14,10 @@
 #include <arpa/inet.h>
 #include <unistd.h>
 
-#include "CAN.h"
 
 
 // int main()
-// { 
+// {
 
 //     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
 //     if (sockfd < 0) {
@@ -39,7 +38,24 @@
 
 //     PointsGenerator pg(0.014, 0.284, 9.8);
 //     // UKF ukf(0.014, 9.8, 0.284, 0.1, 0.3, 0.9, 3.0, 1.7);
-//     Predictor pd;
+
+//     // 配置Predictor参数
+//     Predictor_Params predictor_params;
+
+//     Eigen::Matrix3d MTX;
+
+//     MTX << 1.31527123e+03,  0.00000000e+00,  5.82870287e+02,
+//             0.00000000e+00, 1.31458950e+03,  5.74049534e+02,
+//             0.00000000e+00, 0.00000000e+00,  1.00000000e+00;
+
+//     Eigen::Vector3d locate_result;
+
+//     predictor_params.locator_params.mtx = MTX;
+//     predictor_params.locator_params.radius = 0.106;
+//     predictor_params.locator_params.img_width = 1280;
+//     predictor_params.locator_params.img_height = 1024;
+
+//     Predictor pd(predictor_params);
 
 //     float dt = 0.00625;
 //     auto dt_duration = std::chrono::duration<float>(dt);
@@ -61,7 +77,9 @@
 //         state_noise = pg.get_state(true, 0.05, true);
 //         // std::cout<< std::endl << state_noise << std::endl;
         
-//         if(pd.push_get_legacy(state.head<3>(), dt, result, state_filtered, true)){
+        
+
+//         if(pd.push_get_legacy(state.head<3>(), dt, result, &state_filtered)){
 
 //             // ss_1 << "0 " << state_filtered[0] << ' ' << state_filtered[1] << ' ' << state_filtered[2] << " b_";
 //             ss_1 << "0 " << state[0] << ' ' << state[1] << ' ' << state[2] << " b_";
@@ -93,7 +111,7 @@
 
 //         // std::cout << "\nstate:\n" << state << std::endl;
 //         auto t2 = std::chrono::high_resolution_clock::now();
-//         // std::cout << "time cost: " << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() << " μs" << std::endl;
+//         std::cout << "time cost: " << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() << " μs" << std::endl;
         
 //         // std::this_thread::sleep_for(dt_duration - (t2 - t1));
 //         // std::this_thread::sleep_for(std::chrono::duration<float>(0.1));
@@ -221,76 +239,350 @@
 
 
 
+// int main()
+// {
+
+
+
+//     // 初始化CAN接口
+//     CAN can("can0", 1000000, false, 10000000);
+
+//     std::stringstream can_logger;
+
+//     if(!can.activate(can_logger))
+//     {
+//         std::cerr << can_logger.str() << std::endl;
+//         return -1;
+//     }
+//     can_logger.str("");
+//     can_logger.clear();
+
+
+
+
+
+
+
+
+//     can_frame receive_frame;
+//     int data_len = 0;
+
+//     while(true)
+//     {
+//         std::this_thread::sleep_for(std::chrono::duration<float>(0.1));
+//         std::cout << can_logger.str() << std::endl;
+        
+//         can_logger.str("");
+//         can_logger.clear();
+        
+//         if(can.receive(receive_frame, can_logger))
+//         {
+//             data_len = receive_frame.can_dlc;
+
+//             std::vector<uint8_t> msg_ptr(data_len);
+
+
+
+//             // 反转数据字节序
+//             for(int i = 0; i < data_len; i++)
+//             {
+//                 // msg_ptr[i] = (uint8_t)receive_frame.data[data_len - i - 1];
+//                 // msg_ptr[i] = (uint8_t)receive_frame.data[i];
+
+//             }
+
+
+//             std::cout << "receive_frame.can_id: " << std::hex << receive_frame.can_id << std::endl;
+//             std::cout << "receive_frame.can_dlc: " << std::dec << data_len << std::endl;
+//             std::cout << "receive_frame.data: ";
+
+//             // std::cout << *static_cast<uint64_t*>(&msg_ptr);
+
+//             for(int i = 0; i < data_len; i++)
+//             {
+//                 std::cout << "0x" << std::hex << static_cast<int>(msg_ptr[i]) << ' ';
+//             }
+
+//             std::cout << std::endl;
+//         }
+
+//     }
+
+
+    
+//     return 0;
+// }
+
+
+
+
+
+
+
+// #include "CAN.h"
+
+
+
+
+
+
+// int main()
+// {
+
+//     // 初始化CAN接口
+//     std::stringstream can_logger;
+//     CAN can("can0", 1000000, false, 10000000);
+
+//     if(!can.activate(can_logger))
+//     {
+//         std::cerr << can_logger.str() << std::endl;
+//         return -1;
+//     }
+
+
+
+//     // 开始发送CAN帧
+//     std::chrono::time_point start_time = std::chrono::high_resolution_clock::now();
+//     uint64_t msg = 0;
+//     uint64_t cmd_1 = 4096;
+//     const int Period = 5000;    // ms
+
+//     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+    
+
+//     std::cout << "phase 1" << std::endl;
+
+//     msg = (cmd_1) << (6*8);
+
+
+//     while(true)
+//     {
+//         std::cout<< "msg: " << std::bitset<64>(msg) << std::endl;
+
+//         if(!can.send(0x310, 8, &msg, can_logger))
+//         {
+//             std::cerr << can_logger.str() << std::endl;
+//             break;
+//         }
+
+//         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now(); 
+//         if(std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() >= Period)
+//         {
+//             t1 = t2;
+//             break;
+//         }
+//         std::this_thread::sleep_for(std::chrono::milliseconds(20));
+//     }
+
+
+
+
+//     std::cout << "phase 2" << std::endl;
+
+//     msg = (cmd_1) << (4*8);
+
+//     while(true)
+//     {
+//         std::cout<< "msg: " << std::bitset<64>(msg) << std::endl;
+
+//         if(!can.send(0x310, 8, &msg, can_logger))
+//         {
+//             std::cerr << can_logger.str() << std::endl;
+//             break;
+//         }
+
+//         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now(); 
+//         if(std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() >= Period)
+//         {
+//             t1 = t2;
+//             break;
+//         }
+//         std::this_thread::sleep_for(std::chrono::milliseconds(20));
+//     }
+
+
+    
+
+//     std::cout << "phase 3" << std::endl;
+
+//     msg = (cmd_1) << (2*8);
+
+//     while(true)
+//     {
+//         std::cout<< "msg: " << std::bitset<64>(msg) << std::endl;
+
+//         if(!can.send(0x310, 8, &msg, can_logger))
+//         {
+//             std::cerr << can_logger.str() << std::endl;
+//             break;
+//         }
+
+//         std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now(); 
+//         if(std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() >= Period)
+//         {
+//             t1 = t2;
+//             break;
+//         }
+//         std::this_thread::sleep_for(std::chrono::milliseconds(20));
+//     }
+
+
+
+
+//     return 0;
+// }
+
+
+
+
+
+
+// #include "Chassis_pos.h"
+// #include <iomanip>
+
+// int main() {
+
+
+    
+
+//     IMU_I2C imu(1);
+//     if(!imu.activate())
+//     {
+//         std::cerr << "IMU activation failed" << std::endl;
+//         return -1;
+//     }
+
+//     // if(!imu.calibration_imu())
+//     //     std::cerr << "IMU calibration failed" << std::endl;
+
+
+//     // std::cout << "IMU calibration done" << std::endl;
+//     // std::this_thread::sleep_for(std::chrono::milliseconds(2000));
+
+
+//     // if(!imu.calibration_mag())
+//     //     std::cerr << "mag calibration failed" << std::endl;
+
+
+//     std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+//     int count = 0;
+
+//     std::vector<double> acc, euler, gyro, mag;
+//     std::string version;
+
+//     if(!imu.set_algorithm(9)){
+//         std::cerr << "set algorithm failed" << std::endl;
+//         return -1;
+//     }
+    
+//     while(true)
+//     {
+
+//         if(!imu.get_version(version))
+//         {
+//             std::cerr << "get version failed" << std::endl;
+//             return -1;
+//         }
+
+//         if(!imu.get_raw_acc(acc))
+//         {
+//             std::cerr << "get raw acc failed" << std::endl;
+//             return -1;
+//         }
+
+//         if(!imu.get_euler(euler, true))
+//         {
+//             std::cerr << "get euler failed" << std::endl;
+//             return -1;
+//         }
+        
+//         if(!imu.get_raw_gyro(gyro))
+//         {
+//             std::cerr << "get gyro failed" << std::endl;
+//             return -1;
+//         }
+
+//         if(!imu.get_raw_mag(mag))
+//         {
+//             std::cerr << "get raw mag failed" << std::endl;
+//             return -1;
+//         }
+
+
+//         std::this_thread::sleep_for(std::chrono::milliseconds(10));
+
+        
+//         count++;
+
+//         if(count % 100 == 0)
+//         {
+//             std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+//             std::cout << "freq: " << 100.0 * 1000 / std::chrono::duration_cast<std::chrono::milliseconds>(t2-t1).count() << "Hz" << std::endl;
+//             t1 = t2;
+//         }
+
+//         std::cout << "\033c";
+//         std::cout << "version: " << version << std::endl;
+
+//         std::cout << "\nacc:\n";
+//         std::cout << std::showpos << "x:" << std::left << std::setw(10) << std::setprecision(6) << (double)acc[0];
+//         std::cout << "  y:" << (double)acc[1];
+//         std::cout << "  z:" << (double)acc[2] << std::endl;
+
+//         std::cout << "\nmag:\n";
+//         std::cout << std::showpos << "x:" << std::left << std::setw(10) << std::setprecision(6) << (double)mag[0];
+//         std::cout << "  y:" << (double)mag[1];
+//         std::cout << "  z:" << (double)mag[2] << std::endl;
+        
+//         std::cout << "\ngyro:\n";
+//         std::cout << std::showpos << "x:" << std::left << std::setw(10) << std::setprecision(6) << (double)gyro[0];
+//         std::cout << "  y:" << (double)gyro[1];
+//         std::cout << "  z:" << (double)gyro[2] << std::endl;
+
+//         std::cout << "\neuler:\n";
+//         std::cout << std::showpos << "roll:" << std::left << std::setw(10) << std::setprecision(6) << (double)euler[0];
+//         std::cout << "  pitch:" << (double)euler[1];
+//         std::cout << "  yaw:" << (double)euler[2] << std::endl;
+
+//         if(count == 1000000)
+//             break;
+//         // break;
+//     }
+
+//     return 0;
+// }
+
+
+
+
+
+
+
+
+#include "Message_syncer.h"
+
+
 int main()
 {
+    CAN_PARAMETERS can_params;
+    can_params.interface_name = "can0";
+    can_params.bitrate = 1000000;
+    can_params.enable_canfd = false;
 
-
-
-    // 初始化CAN接口
-    CAN can("can0", 1000000, false, 10000000);
+    Messenger host(can_params, 95);
 
     std::stringstream can_logger;
-
-    if(!can.activate(can_logger))
+    if(!host.activate(can_logger))
     {
         std::cerr << can_logger.str() << std::endl;
         return -1;
     }
-    can_logger.str("");
-    can_logger.clear();
 
+    host.set_control_state(4096, 0, 0);
+    std::this_thread::sleep_for(std::chrono::milliseconds(5000));
 
+    host.deactivate(can_logger);
 
-
-
-
-
-
-    can_frame receive_frame;
-    int data_len = 0;
-
-    while(true)
-    {
-        std::this_thread::sleep_for(std::chrono::duration<float>(0.1));
-        std::cout << can_logger.str() << std::endl;
-        
-        can_logger.str("");
-        can_logger.clear();
-        
-        if(can.receive(receive_frame, can_logger))
-        {
-            data_len = receive_frame.can_dlc;
-
-            std::vector<uint8_t> msg_ptr(data_len);
-
-
-
-            // 反转数据字节序
-            for(int i = 0; i < data_len; i++)
-            {
-                // msg_ptr[i] = (uint8_t)receive_frame.data[data_len - i - 1];
-                // msg_ptr[i] = (uint8_t)receive_frame.data[i];
-
-            }
-
-
-            std::cout << "receive_frame.can_id: " << std::hex << receive_frame.can_id << std::endl;
-            std::cout << "receive_frame.can_dlc: " << std::dec << data_len << std::endl;
-            std::cout << "receive_frame.data: ";
-
-            // std::cout << *static_cast<uint64_t*>(&msg_ptr);
-
-            for(int i = 0; i < data_len; i++)
-            {
-                std::cout << "0x" << std::hex << static_cast<int>(msg_ptr[i]) << ' ';
-            }
-
-            std::cout << std::endl;
-        }
-
-    }
-
-
-    
     return 0;
+
 }

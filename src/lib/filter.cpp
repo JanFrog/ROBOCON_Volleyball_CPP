@@ -10,6 +10,7 @@ UKF::UKF(const UKF_Params& params)
     mass_           = params.mass;
     sigma_Q_        = params.sigma_Q;
     R_              = Eigen::MatrixXd::Identity(m_, m_) * (params.sigma_R * params.sigma_R);
+    R_(0, 0) *= 10;
     character_vel_  = sqrt(mass_ * g_ / K_);
     traffic_        = sqrt(g_ * K_ / mass_);
 
@@ -186,7 +187,7 @@ Eigen::MatrixXd UKF::__observe(const Eigen::MatrixXd& points){
 
 
 // 迭代更新
-std::tuple<Eigen::VectorXd, Eigen::MatrixXd> UKF::forward(const Eigen::VectorXd& state_prev, const Eigen::MatrixXd& P_prev, Eigen::VectorXd observed_point, double dt)
+bool UKF::update(Eigen::VectorXd& state_prev, Eigen::MatrixXd& P_prev, Eigen::VectorXd observed_point, double dt)
 { 
 
     Eigen::MatrixXd scaled_P = (n_+lambda_) * P_prev;
@@ -197,6 +198,7 @@ std::tuple<Eigen::VectorXd, Eigen::MatrixXd> UKF::forward(const Eigen::VectorXd&
     // 检查分解是否成功（非正定矩阵会失败）
     if (llt.info() != Eigen::Success) {
         throw std::runtime_error("Cholesky分解失败: 矩阵非正定");
+        return false;
     }
     
     Eigen::MatrixXd S = llt.matrixL();
@@ -236,8 +238,66 @@ std::tuple<Eigen::VectorXd, Eigen::MatrixXd> UKF::forward(const Eigen::VectorXd&
     Eigen::MatrixXd K = Cov_xz * Cov_zz.ldlt().solve(Eigen::MatrixXd::Identity(m_, m_));
 
     
-    Eigen::VectorXd state_updated = predict_point + (K * Res);
-    Eigen::MatrixXd P_updated = predict_P - (K * Cov_zz * K.transpose());
+    state_prev = predict_point + (K * Res);
+    P_prev = predict_P - (K * Cov_zz * K.transpose());
 
-    return std::make_tuple(state_updated, P_updated);
+    return true;
+}
+
+
+
+
+
+
+
+
+bool UKF::trajectory_generate(const Eigen::VectorXd& state, double Period, double target_height, std::vector<Eigen::Vector3d>& trajectory)
+{
+    trajectory.clear();
+
+    Eigen::VectorXd predict_state(6);
+
+    double dt = 0.0;
+    double total_time = 0.0;
+
+
+    // 计算当前状态落地所需时间
+    if(state(5) > 0)
+    {
+        double time_to_top = atan(state(5) / this->character_vel_) / this->traffic_;
+        double top_pos = this->_count_pos_posi_vel(state(5), state(2), time_to_top);
+
+        if(top_pos >= target_height)
+        {
+            double B = 2 * (exp((this->K_ / this->mass_) * (top_pos - target_height)));
+            total_time = time_to_top + (1 / this->traffic_) * log((B + std::sqrt(B * B - 4)) / 2);
+        }
+        else
+        {
+            return false;
+        }
+    }
+    else
+    {
+        if(state(2) >= target_height)
+        {
+            double A = 2 * this->character_vel_ / (state(5) + this->character_vel_) - 1;
+            double B = (A + 1) * (exp((this->K_ / this->mass_) * (state(2) - target_height)));
+            total_time = (1 / this->traffic_) * log((B + std::sqrt((B * B) - (4 * A))) / (2 * A));
+        }
+        else
+        {
+            return false;
+        }
+    }
+
+    while(dt < total_time)
+    {
+        predict_state = this->__transition(state, dt);
+        trajectory.push_back(predict_state.col(0).head(3));
+        dt += Period;
+    }
+    trajectory.push_back(this->__transition(state, total_time).col(0).head(3));
+
+    return true;
 }

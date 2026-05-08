@@ -12,7 +12,7 @@
 struct UKF_Params{
     float drag_coefficient = 0.014;
     float g = 9.8;
-    float mass = 0.125;
+    float mass = 0.284;
     float sigma_R = 0.1;
     float sigma_Q = 0.01;
     float alpha = 0.9;
@@ -27,8 +27,8 @@ class UKF {
 public:
 
     UKF(const UKF_Params& params);
-    std::tuple<Eigen::VectorXd, Eigen::MatrixXd> forward(const Eigen::VectorXd& state_prev, const Eigen::MatrixXd& P_prev, Eigen::VectorXd observed_point, double dt);
-
+    bool update(Eigen::VectorXd& state_prev, Eigen::MatrixXd& P_prev, Eigen::VectorXd observed_point, double dt);
+    bool trajectory_generate(const Eigen::VectorXd& state, double Period, double target_height, std::vector<Eigen::Vector3d>& trajectory);
 
 
 protected:

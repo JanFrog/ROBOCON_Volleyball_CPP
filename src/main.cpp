@@ -50,11 +50,14 @@ uint64_t last_refresh_tick = std::chrono::duration_cast<std::chrono::nanoseconds
     // 上一刷新时间（纳秒）
 int refresh_epoch = 1;              // 刷新周期（秒）
 
+bool Give_img = false;               // 是否给图像
+
+
 bool thread_exit = false;           // 线程退出标志
 int run_seconds = 600;              // 运行时间（秒）
-int64_t timeout_threshold = 320;    // 超时阈值（纳秒）
+int64_t timeout_threshold = 320;    // 超时阈值（帧）
 int64_t timeout_count = 0;          // 超时计数器
-float conf = 0.f;                   // 置信度阈值
+float CONF_THRESHOLD = 0.7f;        // 置信度阈值
 
 
 
@@ -99,14 +102,14 @@ void post_process_thread() {
 
     
     
-    // 配置Predictor参数
-    Predictor_Params predictor_params;
-    predictor_params.locator_params.mtx = MTX;
-    predictor_params.locator_params.radius = radius;
-    predictor_params.locator_params.img_width = frame_width;
-    predictor_params.locator_params.img_height = frame_height;
+    // 配置Locator参数
+    Locator_Params locator_params;
+    locator_params.mtx = MTX;
+    locator_params.radius = radius;
+    locator_params.img_width = frame_width;
+    locator_params.img_height = frame_height;
 
-    Predictor predictor(predictor_params);
+    Locator locator(locator_params);
 
 
     
@@ -119,15 +122,16 @@ void post_process_thread() {
         
         if (ExposureRecorder<frame_data_mono>::instance().getLatestExposureData(latest)) {
             
-            
-
                 if (latest.timestamp_ns == last_ts) continue;   //与上一次检测记录相同
+
+                std::chrono::high_resolution_clock::time_point t1 = std::chrono::high_resolution_clock::now();
+
 
                 last_ts = latest.timestamp_ns;
                 
-                if(std::get<4>(latest.bboxes) > 0.7 && predictor.locate(std::get<0>(latest.bboxes), std::get<1>(latest.bboxes), std::get<2>(latest.bboxes), std::get<3>(latest.bboxes), locate_result)){
+                if(locator.locate(std::get<0>(latest.bboxes), std::get<1>(latest.bboxes), std::get<2>(latest.bboxes), std::get<3>(latest.bboxes), locate_result)){
 
-                    std::cout<< "locate_result: "<< locate_result.transpose() << std::endl;
+                    // std::cout<< "locate_result: "<< locate_result.transpose() << std::endl;
                     
                     ss_1 << "0 " << locate_result[0] << ' ' << locate_result[1] << ' ' << locate_result[2] << " y_ 0.01";
                     msg_1 = ss_1.str();
@@ -140,6 +144,13 @@ void post_process_thread() {
 
                     ss_1.str("");
                     ss_1.clear();
+
+
+
+
+                    // 打印处理耗时
+                    std::chrono::high_resolution_clock::time_point t2 = std::chrono::high_resolution_clock::now();
+                    std::cout << "process time: " << std::chrono::duration_cast<std::chrono::microseconds>(t2 - t1).count() << "us" << std::endl;
 
                     // std::cout << "最新检测记录 - 时间: " << latest.timestamp_ns << "ns, 检测框: ("
                     //     << "left" << std::get<0>(latest.bboxes) << ",\n"
@@ -299,22 +310,22 @@ static GstFlowReturn on_new_sample(GstElement* sink, gpointer user_data) {
 
 
 
+        if(Give_img){
+            // 压入相机画面
+            GstMapInfo map;
+            if (gst_buffer_map(buffer, &map, GST_MAP_READ)) {
+                
+                cv::Mat frame(1024, 1280, CV_8UC4, map.data); //BGRx
+                // cv::cvtColor(frame, frame, cv::COLOR_BGRA2BGR);// 转换格式
+                data_to_push.image = frame.clone();
 
-        // 压入相机画面
-        GstMapInfo map;
-        if (gst_buffer_map(buffer, &map, GST_MAP_READ)) {
-            
-            cv::Mat frame(1024, 1280, CV_8UC4, map.data); //BGRx
-            // cv::cvtColor(frame, frame, cv::COLOR_BGRA2BGR);// 转换格式
-            data_to_push.image = frame.clone();
+                gst_buffer_unmap(buffer, &map);
 
-            gst_buffer_unmap(buffer, &map);
-
+            }
+            else {
+                std::cerr << "[!] 无法映射缓冲区图像" << std::endl;
+            }
         }
-        else {
-            std::cerr << "[!] 无法映射缓冲区图像" << std::endl;
-        }
-
 
         // ====== 提取置信度最高的检测框 ======
         NvDsBatchMeta* batch_meta = gst_buffer_get_nvds_batch_meta(buffer);
@@ -324,7 +335,7 @@ static GstFlowReturn on_new_sample(GstElement* sink, gpointer user_data) {
             NvDsFrameMeta* frame_meta = (NvDsFrameMeta*)batch_meta->frame_meta_list->data;
             
             
-            float max_conf = 0.5f;
+            float max_conf = CONF_THRESHOLD;
 
             NvDsObjectMeta* best_obj = nullptr;
 
@@ -557,10 +568,13 @@ int main() {
     ss << "! ";
        // ======================================
 
-    ss << "nvvideoconvert " ;
-    ss << "! ";
-    ss << "video/x-raw, format=BGRx ";
-    ss << "! ";
+    if(Give_img)
+    {
+        ss << "nvvideoconvert " ;
+        ss << "! ";
+        ss << "video/x-raw, format=BGRx ";
+        ss << "! ";
+    }
     ss << "appsink name=my_sink emit-signals=true max-buffers=1 drop=true sync=false";
 
     

@@ -71,8 +71,8 @@ private:
     can_frame Frame;        // 标准 CAN 帧
     canfd_frame Frame_FD;   // CANFD 帧
 
-    bool ACTIVATED;         // 接口状态
-    
+    bool ACTIVATED;             // 接口状态
+    can_frame received_frame;   // 接收的 CAN 帧
 
-    int sock;               // 套接字标识
+    int sock;   // 套接字标识
 };

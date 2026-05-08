@@ -101,7 +101,7 @@ bool Locator::locate(double left, double top, double width, double height, Eigen
     {
         if(std::abs((depth_1 - depth_2)) > (tolerance_1 > tolerance_2 ? tolerance_2 : tolerance_1))
         {
-            std::cout<< "\nLocator: depth tolerance not met, tolerance: " << (tolerance_1 > tolerance_2 ? tolerance_2 : tolerance_1) << "\ndepth_difference: " << std::abs(depth_1 - depth_2) << std::endl;
+            // std::cout<< "\nLocator: depth tolerance not met, tolerance: " << (tolerance_1 > tolerance_2 ? tolerance_2 : tolerance_1) << "\ndepth_difference: " << std::abs(depth_1 - depth_2) << std::endl;
             return false;
         }
     }
@@ -110,6 +110,8 @@ bool Locator::locate(double left, double top, double width, double height, Eigen
     result.x() = std::min(depth_1, depth_2);
     result.y() = offset_y;
     result.z() = offset_z;
+
+    result = trans_mtx_ * result;
 
     return true;
 
