@@ -1,8 +1,0 @@
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/My_SHARED_LIB.dir
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/Main.dir
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/BAK_Main.dir
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/Test.dir
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/Module_Test.dir
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/ZED_legacy.dir
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/edit_cache.dir
-/home/nvidia/Projects/Volleyball_cpp/build/CMakeFiles/rebuild_cache.dir

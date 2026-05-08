@@ -1,3 +1,5 @@
-.*/
+.vscode/
+.codeartsdoer/
 build/
-
+tmp/
+resource/model/
